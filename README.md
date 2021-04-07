@@ -22,11 +22,13 @@
 仕事や学校帰り、日常生活で不満があった時につぶやく
 
 ## 設計書
-[UI FLOW　エンドユーザー側](https://drive.google.com/file/d/1eDfiZS8vsMqU2XZicm3gvMdMCUF7Dyp4/view?usp=sharing)
-[UI FLOW　管理者側](https://drive.google.com/file/d/1ROxETyByDq1WcdTXkQkQ9RLEGe7ZhLW9/view?usp=sharing)
-[アプリ機能一覧](https://docs.google.com/spreadsheets/d/1oG_mZY-Dy-EzI6JswhuqpkMjoeMX4QQtskxvphr-Keo/edit?usp=sharing)
-[Wire frame　エンドユーザー側](https://drive.google.com/file/d/1x7GBdxXiWSCSB8VoFM8GSYlpUu6nVh-M/view?usp=sharing)
-[Wire frame 管理者側](https://drive.google.com/file/d/16uJRf5RqQX54pNQ4lkKqS3LoMxIx9WWs/view?usp=sharing)
+- [UI FLOW](https://drive.google.com/file/d/16gX38Qg417og-qvCKUlL6LKtBtgM9FJG/view?usp=sharing)
+- [アプリ機能一覧](https://docs.google.com/spreadsheets/d/1oG_mZY-Dy-EzI6JswhuqpkMjoeMX4QQtskxvphr-Keo/edit?usp=sharing)
+- [Wire frame　エンドユーザー側](https://drive.google.com/file/d/1x7GBdxXiWSCSB8VoFM8GSYlpUu6nVh-M/view?usp=sharing)
+- [Wire frame 管理者側](https://docs.google.com/spreadsheets/d/1oG_mZY-Dy-EzI6JswhuqpkMjoeMX4QQtskxvphr-Keo/edit?usp=sharing)
+- [ER図](https://drive.google.com/file/d/1lfuAvYKWrxG5bEKjCR_xnHXqUB7e_hu2/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1QnQcuacY4Z7_0GdBviE-cgww0kery-LDIYwzNpFH-Uk/edit?usp=sharing)
+- [詳細設計書](https://docs.google.com/spreadsheets/d/1qY6-wJaXBVDk8rac-x-hOVOJWVTtC_gqb1rxN8E-dtI/edit?usp=sharing)
 
 ## チャレンジ要素一覧
 [チャレンジ要素一覧](https://docs.google.com/spreadsheets/d/1zIsnwqtxGdsKNG94_xrReX0PDzIR94cdT9mLPJ6GrhE/edit?usp=sharing)
