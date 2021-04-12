@@ -1,0 +1,60 @@
+
+  <!--<nav class="navbar navbar-default">-->
+  <!--  <div class="container">-->
+  <!--    <div class="navbar-header">-->
+        <!--<%= link_to "Outlet Post(仮)", root_path %>-->
+  <!--    </div>-->
+  <!--    <ul class="nav navbar-nav">-->
+  <!--      <li>About（仮）</li>-->
+  <!--      <li>お知らせ（仮）</li>-->
+  <!--      <li><%= link_to "新規登録（仮）", new_customer_registration_path %></li>-->
+  <!--      <li><%= link_to "ログイン（仮）", new_customer_session_path %></li>-->
+  <!--    </ul>-->
+  <!--  </div>-->
+  <!--</nav>-->
+<header>
+  <% if admin_signed_in? %>
+    <div class="header-container">
+      <div class="logo">
+        <%= link_to "Outlet Post", admin_customers_path %>
+      </div>
+      <nav>
+        <ul class="nav">
+          <li class="nav-list"><%= link_to "お知らせ", admin_notice_index_path %></li>
+          <li class="nav-list"><%= link_to "Outlet一覧", admin_posts_path %></li>
+          <li class="nav-list"><%= link_to "会員一覧", admin_customers_path %></li>
+          <li class="nav-list"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+        </ul>
+      </nav>
+    </div>
+  <% elsif customer_signed_in? %>
+    <div class="header-container">
+    <div class="logo">
+      <%= link_to "Outlet Post", root_path %>
+    </div>
+    <nav>
+      <ul class="nav">
+        <li class="nav-list"><%= link_to "ランキング", best_ansewr_ranking_path %></li>
+        <li class="nav-list"><%= link_to "Outlet Post", new_post_path %></li>
+        <li class="nav-list"><%= link_to "Outlet一覧", root_path %></li>
+        <li class="nav-list"><%= link_to "マイページ", customer_path(@customer) %></li>
+        <li class="nav-list"><%= link_to "お知らせ", notice_path %></li>
+        <li class="nav-list"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+      </ul>
+    </nav>
+  </div>
+  <% else %>
+    <div class="header-container">
+      <div class="logo">
+        <%= link_to "Outlet Post", root_path %>
+      </div>
+      <nav>
+        <ul class="nav">
+          <li class="nav-list"><%= link_to "About", about_path %></li>
+          <li class="nav-list"><%= link_to "お知らせ", notice_path %></li>
+          <li class="nav-list"><%= link_to "新規登録", new_customer_registration_path %></li>
+          <li class="nav-list"><%= link_to "ログイン", new_customer_session_path %></li>
+      </nav>
+    </div>
+  <% end %>
+</header>

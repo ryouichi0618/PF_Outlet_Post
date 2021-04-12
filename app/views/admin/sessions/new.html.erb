@@ -1,0 +1,25 @@
+<div class="sing-background">
+  <div class="container">
+    <h2 class="head-top">
+      <sapn class="headig">ログイン</sapn>
+    </h2>
+      <%= form_with model: @admin, url: admin_session_path, local:true do |f| %>
+      <div class="row mt-5">
+        <div class="field col-5 offset-1">
+          <%= f.label :email, "メールアドレス",class: "head-title" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "ml-5" %>
+        </div>
+
+        <div class="field col-5 offset-1">
+          <%= f.label :password, "パスワード",class: "head-title" %><br />
+          <%= f.password_field :password, autocomplete: "current-password",class: "ml-5" %>
+        </div>
+      </div>
+      <div class="row text-center mt-5">
+        <div class="actions col-12">
+          <%= f.submit "ログインする", class: "btn btn-warning font-italic" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

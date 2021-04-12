@@ -1,0 +1,2 @@
+class Ansewer < ApplicationRecord
+end

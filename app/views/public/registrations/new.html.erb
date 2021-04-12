@@ -1,0 +1,66 @@
+<div class="sing-background">
+  <div class="container">
+
+    <h2 class="head-top">
+      <sapn class="headig">新規登録</sapn>
+    </h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="row">
+        <%= render "publics/shared/error_messages", resource: resource %>
+      </div>
+      <div class="row py-3">
+        <div class="field col-4 offset-2">
+          <%= f.label :nickname, "ニックネーム",class: "head-title" %><br />
+          <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname",class: "ml-5" %>
+        </div>
+
+        <div class="field col-5 offset-1">
+          <%= f.label :email, "メールアドレス",class: "head-title" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "ml-5" %>
+        </div>
+      </div>
+
+      <div class="row py-3">
+        <div class="field col-4 offset-2">
+          <%= f.label :last_name, "姓",class: "head-title" %><br />
+          <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",class: "ml-5" %>
+        </div>
+
+        <div class="field col-5 offset-1">
+          <%= f.label :first_name, "名",class: "head-title" %><br />
+          <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",class: "ml-5" %>
+        </div>
+      </div>
+
+      <div class="row py-3">
+        <div class="field col-4 offset-2">
+          <%= f.label :last_name_kana, "姓-かな",class: "head-title" %><br />
+          <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana",class: "ml-5" %>
+        </div>
+
+        <div class="field col-5 offset-1">
+          <%= f.label :first_name_kana, "名-かな",class: "head-title" %><br />
+          <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana",class: "ml-5" %>
+        </div>
+      </div>
+
+      <div class="row py-3">
+        <div class="field col-4 offset-2">
+          <%= f.label :password, "パスワード(6文字以上)",class: "head-title" %><br />
+          <%= f.password_field :password, autocomplete: "new-password",class: "ml-5" %>
+        </div>
+
+        <div class="field col-5 offset-1">
+          <%= f.label :password_confirmation, "パスワード（確認用）",class: "head-title"  %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "ml-5" %>
+        </div>
+      </div>
+
+      <div class="actions pt-4 text-center">
+        <%= f.submit "新規登録する", class: "btn btn-warning font-italic" %>
+      </div>
+      <%= link_to '→登録済みの方はこちら', new_customer_session_path, class: "offset-9 link-btn" %><br>
+      <%= link_to '→Googleで登録の方はこちら', customer_google_oauth2_omniauth_authorize_path, method: :post, class: "offset-9 link-btn" %>
+    <% end %>
+  </div>
+</div>

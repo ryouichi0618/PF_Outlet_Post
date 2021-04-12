@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  image_id: MyString
+  title: MyString
+  body: MyText
+  best_ansewer: false
+
+two:
+  customer_id: 1
+  image_id: MyString
+  title: MyString
+  body: MyText
+  best_ansewer: false

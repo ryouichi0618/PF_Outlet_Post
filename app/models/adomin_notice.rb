@@ -1,0 +1,2 @@
+class AdominNotice < ApplicationRecord
+end

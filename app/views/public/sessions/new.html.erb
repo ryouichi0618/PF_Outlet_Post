@@ -1,0 +1,36 @@
+<div class="sing-background">
+  <div class="container">
+    <h2 class="head-top">
+      <sapn class="headig">ログイン</sapn>
+    </h2>
+    <%= form_with model: @customer, url: customer_session_path, local:true do |f| %>
+      <div class="row mt-5">
+        <div class="field col-5 offset-1">
+          <%= f.label :email, "メールアドレス",class: "head-title" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "ml-5" %>
+        </div>
+
+        <div class="field col-5 offset-1">
+          <%= f.label :password, "パスワード",class: "head-title" %><br />
+          <%= f.password_field :password, autocomplete: "current-password",class: "ml-5" %>
+        </div>
+      </div>
+      <div class="row text-center">
+        <% if devise_mapping.rememberable? %>
+          <div class="field col-12 my-5">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me, "ログイン情報を保存する", class: "text-white" %>
+          </div>
+        <% end %>
+
+        <div class="actions col-12">
+          <%= f.submit "ログインする", class: "btn btn-warning font-italic" %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= link_to "→新規登録の方はこちら", new_customer_registration_path, class: "offset-9 link-btn" %><br>
+    <%= link_to '→Googleで登録の方はこちら', customer_google_oauth2_omniauth_authorize_path, method: :post, class: "offset-9 link-btn" %>
+
+  </div>
+</div>
