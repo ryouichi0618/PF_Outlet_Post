@@ -3,6 +3,12 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
+  
+  has_many :posts, dependent: :destroy
+  attachment :profile_image
+
+
+
 
   # コールバック時に呼び出されるメソッド
   def self.find_for_oauth(auth)
