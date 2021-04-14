@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_160109) do
     t.string "first_name"
     t.string "last_name_kana"
     t.string "first_name_kana"
-    t.boolean "is_delete"
+    t.boolean "is_delete", default: false, null: false
     t.integer "best_ansewer_all"
     t.integer "best_ansewer_week"
     t.datetime "created_at", null: false

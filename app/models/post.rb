@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
 
-
   belongs_to :customer
-  attachment :image 
+  has_many :ansewers
+
+  attachment :image
 end

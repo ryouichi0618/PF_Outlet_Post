@@ -1,0 +1,5 @@
+
+<%= form_with(model: [post, ansewer], url: post_post_ansewers_path(post), local: true) do |f| %>
+  <%= f.text_area :body, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
