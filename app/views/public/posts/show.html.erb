@@ -5,16 +5,18 @@
       <tbody>
         <tr>
           <td><%= @post.title %></td>
-          <td><%= @post.created_at %></td>
+          <td>投稿日(<%= @post.created_at.strftime('%Y/%m/%d') %>)</td>
         </tr>
         <tr>
           <td><%= attachment_image_tag(@post.customer, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %></td>
           <td><%= @post.body %></td>
         </tr>
-        <tr>
-          <td><%= link_to "削除する", post_path(@post) , class: "btn btn-outline-danger", method: :delete %></td>
-          <td></td>
-        </tr>
+        <% if current_customer == @post.customer %>
+          <tr>
+            <td><%= link_to "削除する", post_path(@post) , class: "btn btn-outline-danger", method: :delete, data: { confirm: '投稿を削除しますか？' } %></td>
+            <td></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
@@ -25,7 +27,7 @@
       <%= render "ansewer", post: @post, ansewer: @ansewer %>
     </div>
     <div class="col-6">
-      <%= render "ansewer_index" %>
+      <%= render "ansewer_index", post: @post %>
     </div>
   </div>
 </div>

@@ -23,6 +23,8 @@ class Public::PostsController < Public::ApplicationController
   end
 
   def destroy
+    Post.find(params[:id]).destroy
+    redirect_to root_path
   end
 
   private

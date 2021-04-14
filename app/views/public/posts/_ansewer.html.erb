@@ -1,5 +1,8 @@
-
-<%= form_with(model: [post, ansewer], url: post_post_ansewers_path(post), local: true) do |f| %>
-  <%= f.text_area :body, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
+<% if customer_signed_in? %>
+  <%= form_with(model: [post, ansewer], url: post_post_ansewers_path(post), local: true) do |f| %>
+    <%= f.text_area :body, rows:'10',placeholder: "回答入力欄" %><br>
+    <%= f.submit "回答する" %>
+  <% end %>
+<% else %>
+  <p>ログイン時のみ回答をすることが可能です。</p>
 <% end %>
