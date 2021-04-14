@@ -1,0 +1,18 @@
+
+<% post.ansewers.each do |ansewer| %>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>
+          <%= attachment_image_tag(ansewer.customer, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
+          <%= ansewer.customer.nickname %>
+        </td>
+        <td><%= ansewer.body %></td>
+        <% if current_customer == ansewer.customer %>
+          <td><%=link_to "編集",edit_post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-success" %></td>
+          <td><%=link_to "削除",post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-danger", method: :delete, data: { confirm: '回答を削除しますか？' } %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

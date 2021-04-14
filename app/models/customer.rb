@@ -3,8 +3,10 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
-  
+
   has_many :posts, dependent: :destroy
+  has_many :ansewers, dependent: :destroy
+
   attachment :profile_image
 
 
@@ -16,6 +18,9 @@ class Customer < ApplicationRecord
 
     unless customer
       customer = Customer.create(
+        first_name: auth.info.first_name,
+        last_name: auth.info.last_name,
+        nickname: auth.info.name,
         uid: auth.uid,
         provider: auth.provider,
         # メールアドレス認証もしている為何かしら値が無くてはいけないので仮の値を代入
