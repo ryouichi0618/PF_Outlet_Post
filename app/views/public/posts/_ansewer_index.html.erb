@@ -23,7 +23,7 @@
       </tr>
       <% ansewer.replies.order(:created_at).each do |reply| %>
         <tr>
-          <td><%= ansewer.customer.nickname %> : <%= reply.body %></td>
+          <td><%= reply.customer.nickname %> : <%= reply.body %></td>
           <% if current_customer == ansewer.customer %>
             <td><%= link_to "返信編集", edit_post_post_ansewer_path(ansewer.post_id, reply), class: "btn btn-outline-success" %></td>
             <td><%= link_to "返信削除", post_post_ansewer_path(ansewer.post_id, reply), class: "btn btn-outline-danger", method: :delete, data: { confirm: '返信を削除しますか？' } %></td>

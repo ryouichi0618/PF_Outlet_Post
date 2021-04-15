@@ -8,8 +8,26 @@
           <td>投稿日(<%= @post.created_at.strftime('%Y/%m/%d') %>)</td>
         </tr>
         <tr>
-          <td><%= attachment_image_tag(@post.customer, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %></td>
+          <td>
+            <%= attachment_image_tag(@post.customer, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
+            <%= @post.customer.nickname %>
+          </td>
           <td><%= @post.body %></td>
+          <td>
+            <% if @post.favorited_by?(current_customer) %>
+              <span>
+                <%= link_to post_favorites_path(@post), method: :delete do %>
+                  ♥<%= @post.favorites.count %> いいね
+                <% end %>
+              </span>
+            <% else %>
+              <sapn>
+                <%= link_to post_favorites_path(@post), method: :post do %>
+                  ♡<%= @post.favorites.count %> いいね
+                <% end %>
+              </sapn>
+            <% end %>
+          </td>
         </tr>
         <% if current_customer == @post.customer %>
           <tr>
