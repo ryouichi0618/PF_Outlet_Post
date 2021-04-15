@@ -6,6 +6,7 @@ class Customer < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :ansewers, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   attachment :profile_image
 

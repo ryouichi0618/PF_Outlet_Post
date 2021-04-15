@@ -1,18 +1,61 @@
-
+<h1>回答一覧</h1>
 <% post.ansewers.each do |ansewer| %>
-  <table class="table">
+  <% if ansewer.parent_id.present? %>
+    <% next %>
+  <% end %>
+  <div class="border">
+  <table>
     <tbody>
       <tr>
+        <td>
+          <% if post.best_ansewer == ansewer.id %>
+            <span class="best_ansewer">こちらの回答がベストアンサーです</span>
+          <% end %>
+        </td>
+      </tr>
+      <tr class="border-bottom">
         <td>
           <%= attachment_image_tag(ansewer.customer, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
           <%= ansewer.customer.nickname %>
         </td>
-        <td><%= ansewer.body %></td>
-        <% if current_customer == ansewer.customer %>
-          <td><%=link_to "編集",edit_post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-success" %></td>
-          <td><%=link_to "削除",post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-danger", method: :delete, data: { confirm: '回答を削除しますか？' } %></td>
+        <td>
+          <%= form_with(model: post, local: true, data: {confirm: "#{ansewer.customer.nickname}さんの回答をベストアンサーにします。この修正は変更できませんが、よろしいですか？"}) do |f| %>
+            <%= f.hidden_field :best_ansewer, value: ansewer.id %>
+            <div class="actions">
+              <%= f.submit 'BA', disabled: post.best_ansewer.present? %><br>
+            </div>
+          <% end %>
+          <%= ansewer.body %>
+        </td>
+        <% if (current_customer == ansewer.customer) && (post.best_ansewer.blank?) %>
+          <td><%= link_to "編集", edit_post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-success" %></td>
+          <td><%= link_to "削除", post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-danger", method: :delete, data: { confirm: '回答を削除しますか？' } %></td>
         <% end %>
+      </tr>
+      <% ansewer.replies.order(:created_at).each do |reply| %>
+        <tr>
+          <td>返信ユーザー：<%= reply.customer.nickname %> : <%= reply.body %></td>
+          <% if current_customer == ansewer.customer %>
+            <td><%= link_to "返信編集", edit_post_post_ansewer_path(ansewer.post_id, reply), class: "btn btn-outline-success" %></td>
+            <td><%= link_to "返信削除", post_post_ansewer_path(ansewer.post_id, reply), class: "btn btn-outline-danger", method: :delete, data: { confirm: '返信を削除しますか？' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+      <tr>
+        <td>
+          <% if customer_signed_in? %>
+            <%= form_with(model: [@post, @ansewer_reply], url: post_post_ansewers_path(@post), local: true) do |f| %>
+              <%= f.text_area :body, placeholder: "返信入力欄" %><br>
+              <%= f.hidden_field :parent_id, value: ansewer.id %>
+              <%= f.submit "返信する" %>
+            <% end %>
+          <% else %>
+            <p>ログイン時のみ返信をすることが可能です。</p>
+          <% end %>
+        </td>
       </tr>
     </tbody>
   </table>
+  </div>
+
 <% end %>

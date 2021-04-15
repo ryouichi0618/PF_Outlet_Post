@@ -1,3 +1,5 @@
+
+
 <h1>投稿詳細画面です</h1>
 <div class="border-bottom">
   <div class="container">
@@ -8,13 +10,34 @@
           <td>投稿日(<%= @post.created_at.strftime('%Y/%m/%d') %>)</td>
         </tr>
         <tr>
-          <td><%= attachment_image_tag(@post.customer, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %></td>
+          <td>
+            <%= attachment_image_tag(@post.customer, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %><br>
+            <%= @post.customer.nickname %>
+          </td>
           <td><%= @post.body %></td>
+          <td>
+            <% if @post.favorited_by?(current_customer) %>
+              <span>
+                <%= link_to post_favorites_path(@post), method: :delete do %>
+                  <span class="text-danger">♥<%= @post.favorites.count %> いいね</span>
+                <% end %>
+              </span>
+            <% else %>
+              <sapn>
+                <%= link_to post_favorites_path(@post), method: :post do %>
+                  ♡<%= @post.favorites.count %> いいね
+                <% end %>
+              </sapn>
+            <% end %>
+          </td>
         </tr>
-        <% if current_customer == @post.customer %>
+        <% if (current_customer == @post.customer) && (@post.best_ansewer.blank?) %>
           <tr>
             <td><%= link_to "削除する", post_path(@post) , class: "btn btn-outline-danger", method: :delete, data: { confirm: '投稿を削除しますか？' } %></td>
-            <td></td>
+          </tr>
+        <% elsif @post.best_ansewer.present?%>
+          <tr>
+            <td>このお悩みは解決済みです</td>
           </tr>
         <% end %>
       </tbody>

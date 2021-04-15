@@ -4,7 +4,7 @@ class CreateAnsewers < ActiveRecord::Migration[5.2]
       t.integer :customer_id
       t.integer :post_id
       t.text :body
-      t.boolean :best_ansewer,default: false
+      t.integer :best_ansewer
 
       t.timestamps
     end

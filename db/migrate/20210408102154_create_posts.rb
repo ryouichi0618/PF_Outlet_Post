@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :image_id
       t.string :title
       t.text :body
-      t.boolean :best_ansewer,default: false
+      t.integer :best_ansewer
 
       t.timestamps
     end
