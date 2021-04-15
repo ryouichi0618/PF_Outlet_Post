@@ -18,14 +18,11 @@ Rails.application.routes.draw do
 
     resources :posts, except: [:edit, :update, :index] do
       resources :post_ansewers, except: [:index,:new,:show] do
+        resources :post_reactions, only: [:new, :create, :destroy]
         member do
           patch 'best'
         end
       end
-    end
-
-    scope :post_ansewers_id do
-      resources :post_reaction, only: [:create, :destroy]
     end
 
     get '/best_ansewr_ranking' => 'best_ansewers#index'

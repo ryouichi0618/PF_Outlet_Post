@@ -1,0 +1,12 @@
+<h1>回答返信画面です</h1>
+<%= form_with model: @reaction, url: post_post_ansewer_post_reactions_path(@post, @ansewer), local: true do |f| %>
+  <%= form.hidden_field :customer_id, value: current_customer.id %>
+    <div class="field">
+      <%= f.label :body, "返信内容" %>
+      <%= f.text_area :body %>
+    </div>
+   
+    <div class="actions">
+      <%= f.submit "返信する" %>
+    </div>
+<% end %>

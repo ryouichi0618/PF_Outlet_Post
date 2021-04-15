@@ -28,6 +28,6 @@ class Public::PostAnsewersController < Public::ApplicationController
   private
 
   def ansewer_params
-    params.require(:ansewer).permit(:body)
+    params.require(:ansewer).permit(:body, :parent_id)
   end
 end

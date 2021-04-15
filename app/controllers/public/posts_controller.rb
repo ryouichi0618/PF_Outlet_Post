@@ -20,6 +20,10 @@ class Public::PostsController < Public::ApplicationController
   def show
     @post = Post.find(params[:id])
     @ansewer = Ansewer.new
+    # @ansewer_reply = @post.ansewers.build
+    @ansewer_reply = Ansewer.new
+    # @comment = @post.comments.build #投稿全体へのコメント投稿用の変数
+    # @comment_reply = @post.comments.build #コメントに対する返信用の変数
   end
 
   def destroy

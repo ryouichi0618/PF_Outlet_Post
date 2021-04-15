@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_160109) do
+ActiveRecord::Schema.define(version: 2021_04_15_062551) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2021_04_12_160109) do
     t.boolean "best_ansewer", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "parent_id"
+    t.index ["parent_id"], name: "index_ansewers_on_parent_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -82,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_160109) do
 
   create_table "reactions", force: :cascade do |t|
     t.integer "ansewer_id"
-    t.integer "post_id"
+    t.integer "customer_id"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
