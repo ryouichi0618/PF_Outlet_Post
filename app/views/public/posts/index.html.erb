@@ -1,16 +1,32 @@
 <h1>ここは投稿一覧、トップページです</h1>
-<div class="container">
-  <table class="table">
-    <% @posts.each do |post| %>
-
-      <tbody>
-        <td><%= attachment_image_tag(post.customer, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></td>
-        <td><%= post.customer.nickname %></td>
-        <td>タイトル</td>
-        <td><%= link_to post.title, post_path(post) %></td>
-        <td><%= post.ansewers.count %>回答</td>
-      </tbody>
-
-    <% end %>
-  </table>
-</div>
+  <div class="container">
+    <div class="shadow">
+      <table class="table">
+        <% @posts.each do |post| %>
+    
+          <tbody>
+            <td>
+              <%= attachment_image_tag(post.customer, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %><br>
+              <%= post.customer.nickname %>
+            </td>
+            <td>タイトル</td>
+            <td><%= link_to post.title, post_path(post) %></td>
+            <td>
+              <%= post.ansewers.count %>回答<br>
+            </td>
+            <td>
+              <%= post.favorites.count %>いいね<br>
+            </td>
+            <td>
+              <% if post.best_ansewer.present? %>
+                <span class="text-success">解決済み</span>
+              <% else %>
+                <span class="text-danger">解決募集中</span>
+              <% end %>
+            </td>
+          </tbody>
+    
+        <% end %>
+      </table>
+    </div>
+  </div>

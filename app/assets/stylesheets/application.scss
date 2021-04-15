@@ -22,6 +22,13 @@
   font-weight: bolder;
 }
 
+a {
+  color: #6495ED;
+}
+
+.shadow  {
+  text-shadow: 0 6px 7px rgba(0,0,0,0.7);
+}
 // ヘッター
 
 // .navbar {
@@ -161,4 +168,17 @@ input[type="password"] {
 .btn-warning.disabled:focus, .btn-warning[disabled]:focus, fieldset[disabled] .btn-warning:focus,
 .btn-warning.disabled.focus, .btn-waring[disabled].focus, fieldset[disabled] .btn-waring.focus {
     background: #FFFF00;
+}
+
+// 投稿一覧
+// .shadow > table > tbody > tr > td,
+// .shadow > table > tbody > tr > th {
+//   padding: 10px 0 0;
+// }
+
+// // 回答機能
+.best_ansewer {
+  color: #FFFF33;
+  text-shadow: 0 0 5px #FF66FF;
+  font-size: 20px;
 }

@@ -25,9 +25,17 @@ class Public::PostAnsewersController < Public::ApplicationController
     redirect_to post_path(params[:post_id])
   end
 
+  def best
+    ansewer = Ansewer.find_by(id: params[:id], post_id: params[:post_id])
+    ansewer.update(ansewer_params)
+    post = Post.find(params[:post_id])
+    post.best_ansewer = true
+    redirect_to post_path(params[:post_id])
+  end
+
   private
 
   def ansewer_params
-    params.require(:ansewer).permit(:body, :parent_id)
+    params.require(:ansewer).permit(:body, :parent_id, :best_ansewer)
   end
 end

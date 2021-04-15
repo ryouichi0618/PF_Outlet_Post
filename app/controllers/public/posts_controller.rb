@@ -19,11 +19,16 @@ class Public::PostsController < Public::ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    # @best_ansewer = Ansewer.find(params[:id])
     @ansewer = Ansewer.new
-    # @ansewer_reply = @post.ansewers.build
     @ansewer_reply = Ansewer.new
-    # @comment = @post.comments.build #投稿全体へのコメント投稿用の変数
-    # @comment_reply = @post.comments.build #コメントに対する返信用の変数
+
+  end
+
+  def update
+    post = Post.find(params[:id])
+    post.update(best_params)
+    redirect_to post_path(post)
   end
 
   def destroy
@@ -34,6 +39,10 @@ class Public::PostsController < Public::ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :image)
+    params.require(:post).permit(:title, :body, :image, :best_ansewer)
+  end
+
+  def best_params
+    params.require(:post).permit(:best_ansewer)
   end
 end

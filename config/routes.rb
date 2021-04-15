@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get '/notice' => 'homes#notice'
     get '/notice/:id' => 'homes#notice_show'
 
-    resources :posts, except: [:edit, :update, :index] do
+    resources :posts, except: [:edit, :index] do
       resources :post_ansewers, except: [:index,:new,:show] do
         member do
           patch 'best'
