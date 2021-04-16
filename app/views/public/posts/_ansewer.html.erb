@@ -1,7 +1,12 @@
 <% if customer_signed_in? %>
+
   <%= form_with(model: [post, ansewer], url: post_post_ansewers_path(post), local: true) do |f| %>
-    <%= f.text_area :body, rows:'10',placeholder: "回答入力欄" %><br>
-    <%= f.submit "回答する" %>
+    <div class="row mx-auto">
+      <%= f.text_area :body, rows:'10',placeholder: "回答入力欄", size: "30x10"%><br>
+    </div>
+    <div class="text-center mt-3">
+      <%= f.submit "回答する", class: "btn btn-warning font-italic"  %>
+    </div>
   <% end %>
 <% else %>
   <p>ログイン時のみ回答をすることが可能です。</p>

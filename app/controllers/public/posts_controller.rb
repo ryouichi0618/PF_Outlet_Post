@@ -7,14 +7,20 @@ class Public::PostsController < Public::ApplicationController
 
 
   def create
-    post = Post.new(post_params)
-    post.customer_id = current_customer.id
-    post.save
-    redirect_to root_path
+    @post = Post.new(post_params)
+    @post.customer_id = current_customer.id
+    if @post.save
+      flash[:notice] = "投稿しました。"
+      redirect_to root_path
+    else
+      flash[:alert] = "投稿に失敗しました。"
+      render :new
+    end
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).reverse_order
+    # .params[:page].per(5)
   end
 
   def show

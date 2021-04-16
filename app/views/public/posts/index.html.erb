@@ -1,32 +1,48 @@
-<h1>ここは投稿一覧、トップページです</h1>
+
+<main class="post-background">
+  <h1><span class="post-index-heading heading">みんなの Outlet Post <i class="fas fa-volume-up"></i></span></h1>
   <div class="container">
     <div class="shadow">
-      <table class="table">
-        <% @posts.each do |post| %>
-    
-          <tbody>
-            <td>
-              <%= attachment_image_tag(post.customer, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %><br>
-              <%= post.customer.nickname %>
-            </td>
-            <td>タイトル</td>
-            <td><%= link_to post.title, post_path(post) %></td>
-            <td>
-              <%= post.ansewers.count %>回答<br>
-            </td>
-            <td>
-              <%= post.favorites.count %>いいね<br>
-            </td>
-            <td>
-              <% if post.best_ansewer.present? %>
-                <span class="text-success">解決済み</span>
-              <% else %>
-                <span class="text-danger">解決募集中</span>
-              <% end %>
-            </td>
-          </tbody>
-    
-        <% end %>
-      </table>
+      <% if @posts.empty? %>
+        <h1 class="text-center">まだ投稿はありません。</h1>
+      <% else %>
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th>投稿ユーザー</th>
+              <th class="table-title">タイトル</th>
+              <th>回答数</th>
+              <th>いいね数</th>
+              <th>質問ステータス</th>
+            </tr>
+          </thead>
+          <% @posts.each do |post| %>
+            <tbody>
+              <tr>
+                <td>
+                  <%= attachment_image_tag(post.customer, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %><br>
+                  <%= post.customer.nickname %>
+                </td>
+                <td class="table-title"><%= link_to post.title, post_path(post) %></td>
+                <td>
+                  <%= post.ansewers.count %>回答
+                </td>
+                <td>
+                  <%= post.favorites.count %>いいね
+                </td>
+                <td>
+                  <% if post.best_ansewer.present? %>
+                    <span class="text-success">解決済み</span>
+                  <% else %>
+                    <span class="text-danger">回答募集中</span>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      <% end %>
     </div>
   </div>
+  <div class="kaminari-btn"><%= paginate @posts,class: "text-center" %></div>
+</main>

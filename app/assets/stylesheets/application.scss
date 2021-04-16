@@ -23,34 +23,61 @@
 }
 
 a {
-  color: #6495ED;
+  color: #000000;
 }
 
+.heading {
+  text-shadow:1px 1px 0 #00FFFF,-1px 1px 0 #f00,1px -1px 0 #f00,-1px -1px 0 #f00;
+  color: #FF8C00;
+}
+
+// ページャ
+.pagination {
+  justify-content: center;
+  text-shadow:1px 1px 0 #000000,-1px 1px 0 #000000,1px -1px 0 #000000,-1px -1px 0 #000000;
+  color: #99FFFF;
+}
+.pagination > span{
+  color: #99FFFF;
+  height: 50px;
+  width: 50px;
+  line-height: 46px;
+  margin: 10px;
+  border: 2px solid #000000;
+  border-radius: 50px;
+  background-color: rgba(255,255,255,0.5);
+  text-align: center;
+}
+
+.pagination > .next,
+.pagination > .last {
+  width: 90px;
+}
+
+.pagination > span > a {
+  color: #99FFFF;
+  display: block;
+  // padding: 5px;
+  // margin: 10px;
+  // border: 2px solid #000000;
+}
+
+.pagination > .current {
+  color: #003399;
+  // padding: 5px;
+  // margin: 10px;
+  border: 2px solid #000000;
+  background-color: rgba(0,0,0,0.5);
+}
+
+// 一覧画面に適用
 .shadow  {
   text-shadow: 0 6px 7px rgba(0,0,0,0.7);
 }
-// ヘッター
 
-// .navbar {
-//   height: 80px;
-//   padding-bottom: 20px;
-//   border-bottom: 3px solid #CCFFCC;
-//   background-color: #CCFFFF;
-//   background: linear-gradient(to bottom right, #CCFFFF, #FFFF66);
-//   // border-radius: 25px;
-// }
-
-// .navbar-default {
-//   // background-color: red;
-// }
-
-// .nav > li {
-// //   position: relative;
-// //   display: block;
-// //   padding: 10px 15px;
-// //   text-decoration: none;
-// }
-
+main {
+  padding: 50px 0;
+}
 
 .logo > a {
   text-decoration: none;
@@ -70,6 +97,7 @@ a {
   text-shadow: 0 0 10px #FF66FF;
   font-size: 20px;
   padding: 5px;
+  display: block;
 }
 
 header {
@@ -117,7 +145,7 @@ nav {
 }
 
 
-// 見出し
+// ログイン画面
 .headig {
   background: linear-gradient(to bottom right, rgba(0,51,255,0.6), rgba(204,255,255,0.7));
   padding: 10px 40px;
@@ -153,7 +181,7 @@ input[type="password"] {
 
 // 新期作成ボタン
 .btn-warning {
-   background: #FFFF88;
+  background: #FFFF88;
   font-family: italic;
 }
 
@@ -173,12 +201,56 @@ input[type="password"] {
 // 投稿一覧
 // .shadow > table > tbody > tr > td,
 // .shadow > table > tbody > tr > th {
-//   padding: 10px 0 0;
+
 // }
+
+.post-background {
+  background-image: image-url("blue.jpg");
+  background-attachment: cover;
+  padding: 100px 0 300px;
+}
+.post-index-heading {
+  margin: 0 0 20px 20px;
+  background-size: cover;
+  background-position: bottom center;
+}
+
+// 投稿詳細
+.post-show-background {
+  background-image: image-url("white0080.png");
+  background-size: cover;
+}
+
 
 // // 回答機能
 .best_ansewer {
   color: #FFFF33;
   text-shadow: 0 0 5px #FF66FF;
   font-size: 20px;
+}
+
+table {
+  background-color: rgba(204,255,255,0.5);
+}
+// .table-title {
+//   width: 100px;
+// }
+
+
+footer {
+  background: linear-gradient(to bottom right, #CCFFFF, #FFFF66);
+  border-top: 6px solid #CCFFCC;
+  width: 100%;
+  height: 70px;
+  text-align: center;
+}
+
+footer > p {
+  line-height: 70px;
+  text-decoration: none;
+  color: #000000;
+}
+
+footer > p > a{
+  color: #000000;
 }
