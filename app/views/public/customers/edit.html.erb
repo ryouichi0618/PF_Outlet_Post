@@ -1,0 +1,60 @@
+<main class="customer-background">
+  <h1 class="heading text-center">会員情報編集</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+
+    <%= form_with model:@customer, local:true do |f| %>
+    <div class="row">
+      <div class="field col-12">
+        <div class="col-4">
+          <%= f.label :nickname, "ニックネーム" %><br>
+          <%= f.text_field :nickname, placeholder: "（例）レミ" %>
+        </div>
+        <div class="offset-2 col-4">
+          <%= f.label :email, "メールアドレス" %><br>
+          <% if @customer.provider = "google" %>
+            <p>現在Googleログインの為変更できません</p>
+          <% else %>
+            <%= f.text_field :email, placeholder: "(例)XXXXXX@google.com" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="customer-field">
+        <%= f.label :last_name, "姓" %><br>
+        <%= f.text_field :last_name, placeholder: "（例）令和" %>
+        <%= f.label :first_name, "名" %><br>
+        <%= f.text_field :first_name, placeholder: "（例）道子" %>
+      </div>
+    </div>
+
+    <div class="customer-row">
+      <div class="field">
+        <%= f.label :last_name_kana, "(姓)-カタカナ" %><br>
+        <%= f.text_field :last_name_kana, placeholder: "レイワ" %>
+        <%= f.label :first_name_kana, "(名)-カタカナ" %><br>
+        <%= f.text_field :first_name_kana, placeholder: "ミチコ" %>
+      </div>
+    </div>
+
+    <div class="customer-field">
+      <%= f.label :profile_image, "プロフィール画像" %><br>
+      <%= f.attachment_field :profile_image %>
+    </div>
+
+
+    <div class="field-body">
+      <%= f.label :info, "紹介文（最大１００字）" %><br>
+      <%= f.text_area :info, rows:'3',placeholder: "紹介文を入力してください" %>
+    </div>
+
+    <div class="actions text-center mt-4">
+      <%= f.submit '投稿', class: "btn btn-warning font-italic" %>
+    </div>
+
+    <% end %>
+    </div>
+  </div>
+</main>

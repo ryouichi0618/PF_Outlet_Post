@@ -20,15 +20,12 @@ class Public::PostsController < Public::ApplicationController
 
   def index
     @posts = Post.all.page(params[:page]).reverse_order
-    # .params[:page].per(5)
   end
 
   def show
     @post = Post.find(params[:id])
-    # @best_ansewer = Ansewer.find(params[:id])
     @ansewer = Ansewer.new
     @ansewer_reply = Ansewer.new
-
   end
 
   def update

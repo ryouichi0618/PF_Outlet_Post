@@ -1,14 +1,14 @@
 <% if notice %>
 	<div class="flash notice">
-	  <span ="notice"><%= notice %></span>
+	  <span class="text-success"><%= notice %></span>
 	</div>
 <% elsif flash[:success] %>
 	<div class="flash success">
 	  <% flash[:success]="ログインしました" %>
-  	<span class="success"><%= flash[:success] %></span>
+  	<span class="text-success"><%= flash[:success] %></span>
 	</div>
 <% elsif flash[:alert] %>
 	<div class="flash danger">
-	  <span class="alert"><%= flash[:alert] %></span>
+	  <span class="text-danger"><%= flash[:alert] %></span>
 	</div>
 <% end %>

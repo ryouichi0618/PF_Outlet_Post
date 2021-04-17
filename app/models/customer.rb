@@ -11,6 +11,9 @@ class Customer < ApplicationRecord
   attachment :profile_image
 
 
+  validates :info, length: { maximum: 100 }
+
+
 
 
   # コールバック時に呼び出されるメソッド

@@ -30,8 +30,14 @@ a {
   text-shadow:1px 1px 0 #00FFFF,-1px 1px 0 #f00,1px -1px 0 #f00,-1px -1px 0 #f00;
   color: #FF8C00;
 }
+// フラッシュメッセージ
+.flash {
+  font-size: 30px;
+  text-align: center;
+  background-color: rgba(255,204,51,0.7);
+}
 
-// ページャ
+// ページャー
 .pagination {
   justify-content: center;
   text-shadow:1px 1px 0 #000000,-1px 1px 0 #000000,1px -1px 0 #000000,-1px -1px 0 #000000;
@@ -57,15 +63,10 @@ a {
 .pagination > span > a {
   color: #99FFFF;
   display: block;
-  // padding: 5px;
-  // margin: 10px;
-  // border: 2px solid #000000;
 }
 
 .pagination > .current {
   color: #003399;
-  // padding: 5px;
-  // margin: 10px;
   border: 2px solid #000000;
   background-color: rgba(0,0,0,0.5);
 }
@@ -129,8 +130,6 @@ nav {
   margin: 0 30px;
 }
 
-
-
 .link-btn {
   color: #000033;
   background-color: #CCFFFF;
@@ -179,7 +178,7 @@ input[type="password"] {
   height: 40px;
 }
 
-// 新期作成ボタン
+// 作成ボタン
 .btn-warning {
   background: #FFFF88;
   font-family: italic;
@@ -197,13 +196,30 @@ input[type="password"] {
 .btn-warning.disabled.focus, .btn-waring[disabled].focus, fieldset[disabled] .btn-waring.focus {
     background: #FFFF00;
 }
+// 新規投稿
+.post-new-bg {
+  background-image: image-url("blue.jpg");
+  background-attachment: cover;
+  padding: 100px 0 100px;
+}
+.field-title > label,
+.field-body > label {
+  margin: 30px 0 0;
+}
+
+.field-title > input {
+  width: 600px;
+}
+
+.field-body > textarea {
+  width: 600px;
+}
+
+table {
+  background-color: rgba(204,255,255,0.5);
+}
 
 // 投稿一覧
-// .shadow > table > tbody > tr > td,
-// .shadow > table > tbody > tr > th {
-
-// }
-
 .post-background {
   background-image: image-url("blue.jpg");
   background-attachment: cover;
@@ -217,24 +233,93 @@ input[type="password"] {
 
 // 投稿詳細
 .post-show-background {
-  background-image: image-url("white0080.png");
+  background-color: rgba(204,204,204,0.5);
   background-size: cover;
+}
+.post-title {
+  text-align: center;
+  border: 2px solid #6699FF;
+  padding: 10px;
+  background-color: rgba(204,255,255,0.5);
+}
+.post-content {
+  padding: 5px;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+
+.post-content-box {
+  border: 2px solid #6699FF;
+  background-color:#FFFFFF;
+  padding: 20px;
+  width: 100%;
+}
+
+.post-infor {
+  background-color: rgba(204,255,255,0.5);
 }
 
 
 // // 回答機能
+.best-btn {
+  display: inline-block;
+  width: 130px;
+}
+
 .best_ansewer {
   color: #FFFF33;
   text-shadow: 0 0 5px #FF66FF;
   font-size: 20px;
-}
-
-table {
+  padding: 10px;
   background-color: rgba(204,255,255,0.5);
 }
-// .table-title {
-//   width: 100px;
-// }
+
+.ansewer-name {
+  font-size: 20px;
+  padding: 10px;
+  background-color: rgba(204,255,255,0.5);
+}
+
+.post-edit-bg {
+  background-image: image-url("blue.jpg");
+  background-attachment: cover;
+  padding: 130px 0 200px;
+}
+
+// 会員ページ
+
+.customer-container {
+  height:900px;
+}
+
+.customer-background {
+  background-color: rgba(255,255,170,0.5);
+  padding-bottom: 130px;
+}
+
+.img-box1 {
+  background-image: image-url("sky.jpg");
+  background-size: cover;
+  background-position: center center;
+  height: 300px;
+  width: 100%;
+}
+
+.img-box2 {
+  background-image: image-url("schrecksee-2534484__480.jpg");
+  background-size: cover;
+  background-position: center center;
+  height: 115px;
+  width: 100%;
+}
+
+.customer-title {
+  font-size: 20px;
+  padding: 10px;
+  background-color: rgba(204,255,255,0.5);
+
+}
+
 
 
 footer {
