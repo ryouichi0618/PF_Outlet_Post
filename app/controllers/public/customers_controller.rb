@@ -20,15 +20,26 @@ class Public::CustomersController < Public::ApplicationController
   end
 
   def unsubscribe
+    @customer = Customer.find(params[:id])
   end
 
   def withdraw
+    @customer = Customer.find(params[:id])
+    @customer.update(is_delete: true)
+    reset_session
+    flash[:notice] = "♪ご利用ありがとうございました！またのご利用を心よりお待ちしております。♪"
+    redirect_to root_path
   end
 
   def post_index
+    @customer = Customer.find(params[:id])
+    @posts = @customer.posts.page(params[:page]).reverse_order
   end
 
   def ansewers
+    @customer = Customer.find(params[:id])
+    @ansewers = Ansewer.where(customer_id: params[:id]).page(params[:page]).reverse_order.per(10)
+    @posts = Post.all
   end
 
   private

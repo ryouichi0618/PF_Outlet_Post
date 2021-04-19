@@ -18,11 +18,11 @@
       <% end %>
     </h4>
   <% end %>
-  <table class="table table-bordered ">
+  <table class="table table-bordered">
     <tbody>
       <tr class="border text-center">
-        <td>
-          <%= ansewer.body %>
+        <td class="py-4">
+          「<%= ansewer.body %>」
         </td>
         <td>
           <% if (current_customer == ansewer.customer) && (post.best_ansewer.blank?) %>
@@ -65,12 +65,19 @@
             <p>ログイン時のみ返信をすることが可能です。</p>
           </td>
         <% end %>
-        <% if current_customer == post.customer %>
+        <% if (current_customer == post.customer) && (ansewer.customer != current_customer) %>
           <td class="text-center">
             <%= form_with(model: post, local: true, data: {confirm: "#{ansewer.customer.nickname}さんの回答をベストアンサーにします。この修正は変更できませんが、よろしいですか？"}) do |f| %>
               <%= f.hidden_field :best_ansewer, value: ansewer.id %>
               <%= f.submit 'BestAnswer', class: "btn btn-warning font-weight-bold best-btn form-control", disabled: post.best_ansewer.present? %>
             <% end %>
+          </td>
+        <% elsif post.best_ansewer.present? %>
+
+        <% else %>
+          <td class="text-center">
+            <%= attachment_image_tag(ansewer.customer, :profile_image, size: "90x90", fallback: "no_image.jpg") %><br>
+            <%= "#{ansewer.customer.nickname}さんへ返信" %>
           </td>
         <% end %>
       </tr>

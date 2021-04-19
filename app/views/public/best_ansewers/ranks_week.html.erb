@@ -1,0 +1,64 @@
+<main class="ranking-background">
+  <div class="text-center">
+    <span class="rank_link">
+      <%= link_to  best_ansewr_ranking_path do %>
+        <<i class="fas fa-trophy"></i>総合ランキングはこちらのリンク<i class="fas fa-trophy"></i>>
+      <% end %>
+    </span>
+  </div>
+  <h1 class="text-center mb-4"><span class="post-index-heading heading">週間ベストアンサーランキング <i class="fas fa-crown"></i></span></h1>
+  <div class="container">
+    <div class="shadow">
+      <table class="table table-hover table-dark">
+        <thead>
+          <tr class="text-center">
+            <th>ランキング</th>
+            <th>ユーザーアイコン</th>
+            <th>ユーザーネーム</th>
+            <th>ベストアンサー数</th>
+          </tr>
+        </thead>
+        <% @customers_week.each.with_index(1) do |customer, i| %>
+          <% unless i > 10 %>
+            <% if i <= 3 %>
+              <tbody class="top-rank">
+            <% else %>
+              <tbody>
+            <% end %>
+              <tr class="text-center">
+                <% if i == 1%>
+                  <td class="rank-1">
+                <% elsif i == 2 %>
+                  <td class="rank-2">
+                <% elsif i == 3 %>
+                  <td class="rank-3">
+                <% elsif i == 4 %>
+                  <td class="rank-4">
+                <% elsif i == 5 %>
+                  <td class="rank-5">
+                <% else %>
+                  <td class="rank-out">
+                <% end %>
+                  <i class="fas fa-crown"></i><sapn>第<%= i %>位</sapn><i class="fas fa-crown"></i>
+                </td>
+                <td>
+                  <%= link_to customer_path(customer) do %>
+                    <%= attachment_image_tag(customer, :profile_image, size: "50x50", fallback: "no_image.jpg") %><br>
+                  <% end %>
+                </td>
+                <td class="rank_name">
+                  <%= link_to customer.nickname, customer_path(customer) %>
+                </td>
+                <td>
+                  <%= customer.best_ansewer_all %>
+                </td>
+              </tr>
+            </tbody>
+          <% else %>
+
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</main>

@@ -1,7 +1,7 @@
-<main class="customer-background">
+<main class="admin_customer_bg">
   <h1 class="heading text-center">会員情報編集</h1>
-  <div class="container">
-    <%= form_with model:@customer, local:true do |f| %>
+  <div class="container admin-text">
+    <%= form_with model:@customer,url: admin_customer_path(@customer), local:true do |f| %>
     <div class="row d-flex justify-content-center">
         <div class="field">
           <%= f.label :nickname, "ニックネーム（最大１０字）" %><br>

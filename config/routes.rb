@@ -21,7 +21,8 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
 
-    get '/best_ansewr_ranking' => 'best_ansewers#index'
+    get '/best_ansewr_ranking' => 'best_ansewers#ranks_all'
+    get '/best_ansewr_ranking_week' => 'best_ansewers#ranks_week'
 
     resources :customers, except: [:new, :create, :index] do
       member do
@@ -34,10 +35,13 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/customers' => 'customers#top'
-    get 'customers/:id' => 'customers#show'
-    get '/customers/unsubscribe' => 'customers#unsubscribe'
-    patch '/customers/withdraw' => 'customers#withdraw'
+    # get '/customers' => 'customers#top'
+    # get 'customers/:id' => 'customers#show'
+    # get '/customers/unsubscribe' => 'customers#unsubscribe'
+    patch '/customers/:id/withdraw' => 'customers#withdraw'
+    
+    resources :customers, only: [:index, :show, :edit, :update]
+
 
     resources :posts, only: [:index, :show, :destroy]
 

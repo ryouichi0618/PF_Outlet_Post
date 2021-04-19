@@ -1,5 +1,6 @@
 class Public::PostsController < Public::ApplicationController
   before_action :authenticate_customer!, except: [:index, :show]
+  include ApplicationHelper
 
   def new
     @post = Post.new
@@ -30,8 +31,19 @@ class Public::PostsController < Public::ApplicationController
 
   def update
     post = Post.find(params[:id])
-    post.update(best_params)
-    redirect_to post_path(post)
+    if post.update(best_params)
+      # BestAnswerに選ばれた人にcountする処理
+      ansewer = post.ansewers.find_by(id: post.best_ansewer)
+      customer = ansewer.customer
+      customer.best_ansewer_all = best_ansewer_all_count(customer)
+      customer.best_ansewer_week = best_ansewer_week_count(customer)
+      customer.update(customer_params)
+      flash[:notice] = "BestAnswerを選択しました。"
+      redirect_to post_path(post)
+    else
+      flash[:alert] = "BestAnswerを選択できませんでした。"
+      redirect_to post_path(post)
+    end
   end
 
   def destroy
@@ -42,10 +54,14 @@ class Public::PostsController < Public::ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :image, :best_ansewer)
+    params.require(:post).permit(:title, :body, :image)
   end
 
   def best_params
     params.require(:post).permit(:best_ansewer)
+  end
+
+  def customer_params
+    params.permit(:best_ansewer_all, :best_ansewer_week)
   end
 end

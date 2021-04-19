@@ -280,6 +280,7 @@ table {
   background-color: rgba(204,255,255,0.5);
 }
 
+
 .post-edit-bg {
   background-image: image-url("blue.jpg");
   background-attachment: cover;
@@ -288,6 +289,9 @@ table {
 
 // 会員ページ
 
+.admin-text{
+  color: #FFFFFF;
+}
 .customer-container {
   height:900px;
 }
@@ -295,6 +299,11 @@ table {
 .customer-background {
   background-color: rgba(255,255,170,0.5);
   padding-bottom: 130px;
+}
+
+.customer-unsubscribe{
+  background-color: rgba(255,255,170,0.5);
+  height: 90vh;
 }
 
 .img-box1 {
@@ -320,6 +329,55 @@ table {
 
 }
 
+// ランキングページ
+.ranking-background {
+  background: linear-gradient(to bottom right, #FFFF33, #FFFFFF);
+  background-attachment: cover;
+  padding: 100px 0 300px;
+}
+.top-rank {
+  font-size: 25px;
+}
+
+.rank-1 {
+  color: #FFFF00;
+}
+.rank-2 {
+  color: #EEEEEE;
+}
+.rank-3 {
+  color: #CD853F;
+}
+.rank-4 {
+  color: #6495ED;
+}
+.rank-5 {
+  color: #6A5ACD;
+}
+
+.rank-out {
+  color: #8A2BE2;
+}
+
+.rank_name >a {
+  color: #FFFFFF;
+}
+
+.rank_link {
+  color: 	#9BF9CC;
+  font-size: 25px;
+}
+
+.rank_link > a {
+  color: 	#00F9A9;
+}
+
+
+// 管理者トップ画面（会員一覧）
+.admin_customer_bg {
+  background-color: #666666;
+  padding: 100px 0 300px;
+}
 
 
 footer {

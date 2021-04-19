@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2021_04_17_094257) do
     t.string "last_name_kana"
     t.string "first_name_kana"
     t.boolean "is_delete", default: false, null: false
-    t.integer "best_ansewer_all"
-    t.integer "best_ansewer_week"
+    t.integer "best_ansewer_all", default: 0
+    t.integer "best_ansewer_week", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "uid"
