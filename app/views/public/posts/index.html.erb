@@ -1,5 +1,8 @@
 
 <main class="post-background">
+  <% if @path.is('search#search') %>
+  <h1><%= "[#{@selected}] を「#{@content}」で検索の結果" %></h1>
+  <% end %>
   <h1><span class="post-index-heading heading">みんなの Outlet Post <i class="fas fa-volume-up"></i></span></h1>
   <div class="container">
     <div class="shadow">

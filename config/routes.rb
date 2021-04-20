@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'posts#index'
-
+    get '/search' => 'search#search'
     get '/about' => 'homes#about'
     get '/notice' => 'homes#notice'
     get '/notice/:id' => 'homes#notice_show'
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     patch '/customers/:id/withdraw' => 'customers#withdraw'
-    
+    get '/search' => 'search#search'
     resources :customers, only: [:index, :show, :edit, :update]
 
 

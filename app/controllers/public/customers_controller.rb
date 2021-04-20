@@ -42,6 +42,9 @@ class Public::CustomersController < Public::ApplicationController
     @posts = Post.all
   end
 
+ 
+
+
   private
 
   def customer_params

@@ -13,7 +13,9 @@
 
   <body>
     <%= render 'layouts/header'%>
-    <%= render 'layouts/search'%>
+    <% if @path.is('posts#index', 'search#search') %>
+      <%= render 'layouts/search'%>
+    <% end %>
     <%= render 'layouts/flash'%>
       <%= yield %>
     <%= render 'layouts/footer'%>
