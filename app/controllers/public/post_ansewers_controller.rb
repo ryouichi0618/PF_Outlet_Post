@@ -4,8 +4,13 @@ class Public::PostAnsewersController < Public::ApplicationController
     post = Post.find(params[:post_id])
     ansewer = current_customer.ansewers.new(ansewer_params)
     ansewer.post_id = post.id
-    ansewer.save
-    redirect_to post_path(post)
+    if ansewer.save
+      flash[:notice] = "回答しました。"
+      redirect_to post_path(post)
+    else
+      flash[:alert] = "投稿に失敗しました。"
+      redirect_to post_path(post)
+    end
   end
 
 
@@ -16,22 +21,28 @@ class Public::PostAnsewersController < Public::ApplicationController
 
   def update
     ansewer = Ansewer.find_by(id: params[:id], post_id: params[:post_id])
-    ansewer.update(ansewer_params)
-    redirect_to post_path(params[:post_id])
+    if ansewer.
+    if ansewer.update(ansewer_params)
+      flash[:notice] = "内容が更新されました。"
+      redirect_to post_path(params[:post_id])
+    else
+      flash[:alert] = "編集に失敗しました。"
+      @post = Post.find(params[:post_id])
+      @ansewer = Ansewer.find_by(id: params[:id], post_id: params[:post_id])
+      render :edit
+    end
   end
 
   def destroy
-    Ansewer.find_by(id: params[:id], post_id: params[:post_id]).destroy
-    redirect_to post_path(params[:post_id])
+    if Ansewer.find_by(id: params[:id], post_id: params[:post_id]).destroy
+      flash[:notice] = "内容を削除しました。"
+      redirect_to post_path(params[:post_id])
+    else
+      flash[:alert] = "削除に失敗しました。"
+      redirect_to post_path(params[:post_id])
+    end
   end
 
-  def best
-    ansewer = Ansewer.find_by(id: params[:id], post_id: params[:post_id])
-    ansewer.update(ansewer_params)
-    post = Post.find(params[:post_id])
-    post.best_ansewer = true
-    redirect_to post_path(params[:post_id])
-  end
 
   private
 

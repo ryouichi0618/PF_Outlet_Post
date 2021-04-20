@@ -74,6 +74,7 @@ gem 'kaminari','~> 1.2.1'
 gem 'rubocop-airbnb'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
+gem 'whenever', require: false
 
 group :production do
   gem 'mysql2'

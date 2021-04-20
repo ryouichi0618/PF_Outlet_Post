@@ -11,6 +11,9 @@ class Customer < ApplicationRecord
   attachment :profile_image
 
 
+  validates :info, length: { maximum: 100 }
+  validates :nickname, length: { in: 1..10 }
+
 
 
   # コールバック時に呼び出されるメソッド
@@ -21,6 +24,8 @@ class Customer < ApplicationRecord
       customer = Customer.create(
         first_name: auth.info.first_name,
         last_name: auth.info.last_name,
+        first_name_kana: "記入してください(姓)",
+        last_name_kana: "記入してください (名)",
         nickname: auth.info.name,
         uid: auth.uid,
         provider: auth.provider,
@@ -33,6 +38,18 @@ class Customer < ApplicationRecord
 
     return customer
   end
+
+
+  def active_for_authentication?
+    super && (self.is_delete == false)
+  end
+
+  # 会員退会、復旧のステータス
+  def customer_status_by?(customer)
+    Customer.where(id: customer.id, is_delete: true).exists?
+  end
+
+
 
   private
 

@@ -10,49 +10,49 @@
       </div>
       <div class="row py-3">
         <div class="field col-4 offset-2">
-          <%= f.label :nickname, "ニックネーム",class: "head-title" %><br />
-          <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname",class: "ml-5" %>
+          <%= f.label :nickname, "ニックネーム（最大１０字）",class: "head-title" %><br />
+          <%= f.text_field :nickname, placeholder: "（例）レミ", autofocus: true, autocomplete: "nickname",class: "ml-5" %>
         </div>
 
         <div class="field col-5 offset-1">
           <%= f.label :email, "メールアドレス",class: "head-title" %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "ml-5" %>
+          <%= f.email_field :email, placeholder: "(例)XXXXXX@google.com", autofocus: true, autocomplete: "email",class: "ml-5" %>
         </div>
       </div>
 
       <div class="row py-3">
         <div class="field col-4 offset-2">
           <%= f.label :last_name, "姓",class: "head-title" %><br />
-          <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",class: "ml-5" %>
+          <%= f.text_field :last_name, placeholder: "（例）令和", autofocus: true, autocomplete: "last_name",class: "ml-5" %>
         </div>
 
         <div class="field col-5 offset-1">
           <%= f.label :first_name, "名",class: "head-title" %><br />
-          <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",class: "ml-5" %>
+          <%= f.text_field :first_name, placeholder: "（例）道子", autofocus: true, autocomplete: "first_name",class: "ml-5" %>
         </div>
       </div>
 
       <div class="row py-3">
         <div class="field col-4 offset-2">
-          <%= f.label :last_name_kana, "姓-かな",class: "head-title" %><br />
-          <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana",class: "ml-5" %>
+          <%= f.label :last_name_kana, "(姓)-カタカナ",class: "head-title" %><br />
+          <%= f.text_field :last_name_kana, placeholder: "（例）レイワ", autofocus: true, autocomplete: "last_name_kana",class: "ml-5" %>
         </div>
 
         <div class="field col-5 offset-1">
-          <%= f.label :first_name_kana, "名-かな",class: "head-title" %><br />
-          <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana",class: "ml-5" %>
+          <%= f.label :first_name_kana, "(名)-カタカナ",class: "head-title" %><br />
+          <%= f.text_field :first_name_kana, placeholder: "（例）ミチコ", autofocus: true, autocomplete: "first_name_kana",class: "ml-5" %>
         </div>
       </div>
 
       <div class="row py-3">
         <div class="field col-4 offset-2">
           <%= f.label :password, "パスワード(6文字以上)",class: "head-title" %><br />
-          <%= f.password_field :password, autocomplete: "new-password",class: "ml-5" %>
+          <%= f.password_field :password, placeholder: "パスワード(6文字以上)", autocomplete: "new-password",class: "ml-5" %>
         </div>
 
         <div class="field col-5 offset-1">
           <%= f.label :password_confirmation, "パスワード（確認用）",class: "head-title"  %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "ml-5" %>
+          <%= f.password_field :password_confirmation, placeholder: "パスワード（確認用）", autocomplete: "new-password",class: "ml-5" %>
         </div>
       </div>
 

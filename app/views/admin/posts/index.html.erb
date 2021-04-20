@@ -1,1 +1,52 @@
-<h1>Adminの投稿一覧ページです</h1>
+
+<main class="admin_post_bg">
+  <h1 class="text-center">投稿一覧ページ</h1>
+  <div class="container-fluid">
+    <% if @posts.empty? %>
+      <h1 class="text-center">まだ投稿はありません。</h1>
+    <% else %>
+      <table class="table table-hover table-sm text-center">
+        <thead>
+          <tr>
+            <th>投稿ユーザー</th>
+            <th class="table-title">タイトル</th>
+            <th>回答数</th>
+            <th>いいね数</th>
+            <th>質問ステータス</th>
+          </tr>
+        </thead>
+        <% @posts.each do |post| %>
+          <% if post.customer.is_delete == false %>
+            <tbody>
+              <tr>
+                <td>
+                  <%= link_to admin_customer_path(post.customer) do %>
+                    <%= attachment_image_tag(post.customer, :profile_image, size: "50x50", fallback: "no_image.jpg") %><br>
+                    <%= post.customer.nickname %>
+                  <% end %>
+                </td>
+                <td class="table-title"><%= link_to post.title, admin_post_path(post) %></td>
+                <td>
+                  <%= post.ansewers.where(parent_id: nil).count %>回答
+                </td>
+                <td>
+                  <%= post.favorites.count %>いいね <i class="far fa-thumbs-up"></i>
+                </td>
+                <td>
+                  <% if post.best_ansewer.present? %>
+                    <span class="text-success">解決済み</span>
+                  <% else %>
+                    <span class="text-danger">回答募集中</span>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          <% else %>
+            <h1 class="text-center">まだ投稿はありません。</h1>
+          <% end %>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+  <div class="kaminari-btn"><%= paginate @posts,class: "text-center" %></div>
+</main>

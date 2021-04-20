@@ -17,15 +17,12 @@ Rails.application.routes.draw do
     get '/notice/:id' => 'homes#notice_show'
 
     resources :posts, except: [:edit, :index] do
-      resources :post_ansewers, except: [:index,:new,:show] do
-        member do
-          patch 'best'
-        end
-      end
+      resources :post_ansewers, except: [:index,:new,:show]
       resource :favorites, only: [:create, :destroy]
     end
 
-    get '/best_ansewr_ranking' => 'best_ansewers#index'
+    get '/best_ansewr_ranking' => 'best_ansewers#ranks_all'
+    get '/best_ansewr_ranking_week' => 'best_ansewers#ranks_week'
 
     resources :customers, except: [:new, :create, :index] do
       member do
@@ -38,12 +35,14 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/customers' => 'customers#top'
-    get 'customers/:id' => 'customers#show'
-    get '/customers/unsubscribe' => 'customers#unsubscribe'
-    patch '/customers/withdraw' => 'customers#withdraw'
+    patch '/customers/:id/withdraw' => 'customers#withdraw'
+    
+    resources :customers, only: [:index, :show, :edit, :update]
 
-    resources :posts, only: [:index, :show, :destroy]
+
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :post_ansewers, only: [:destroy]
+    end
 
     resources :notice, except: [:new, :create]
   end

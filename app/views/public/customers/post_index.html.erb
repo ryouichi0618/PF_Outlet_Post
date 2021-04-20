@@ -1,0 +1,66 @@
+<main class="post-background">
+  <h1><span class="post-index-heading heading"><%= @customer.nickname %>の Outlet Post <i class="fas fa-volume-up"></i></span></h1>
+  <div class="container">
+    <div class="shadow">
+      <% if @posts.empty? %>
+        <h1 class="text-center">まだ投稿はありません。</h1>
+      <% else %>
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th>投稿ユーザー</th>
+              <th class="table-title">タイトル</th>
+              <th>回答数</th>
+              <th>いいね数</th>
+              <th>質問ステータス</th>
+              <th>投稿日時</th>
+            </tr>
+          </thead>
+          <% @posts.each do |post| %>
+            <tbody>
+              <tr>
+                <td>
+                  <%= link_to customer_path(post.customer) do %>
+                    <%= attachment_image_tag(post.customer, :profile_image, size: "50x50", fallback: "no_image.jpg") %><br>
+                    <%= post.customer.nickname %>
+                  <% end %>
+                </td>
+                <td class="table-title"><%= link_to post.title, post_path(post) %></td>
+                <td>
+                  <%= post.ansewers.where(parent_id: nil).count %>回答
+                </td>
+                <td>
+                   <% if customer_signed_in? %>
+                  <% if post.favorited_by?(current_customer) %>
+                    <%= link_to post_favorites_path(post), method: :delete do %>
+                      <span class="text-danger">♥<%= post.favorites.count %> いいね</span>
+                    <% end %>
+                  <% else %>
+                    <%= link_to post_favorites_path(post), method: :post do %>
+                      <span class="text-primary">♡<%= post.favorites.count %> いいね</span>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <%= post.favorites.count %>いいね <i class="far fa-thumbs-up"></i>
+                <% end %>
+                </td>
+                <td>
+                  <% if post.best_ansewer.present? %>
+                    <span class="text-success">解決済み</span>
+                  <% else %>
+                    <span class="text-danger">回答募集中</span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= post.created_at.strftime('%Y/%m/%d') %><br>
+                  <%= post.created_at.strftime('(%H時%M分)') %>
+                </td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      <% end %>
+    </div>
+  </div>
+  <div class="kaminari-btn"><%= paginate @posts,class: "text-center" %></div>
+</main>

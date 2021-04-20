@@ -38,8 +38,8 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.string :last_name_kana
       t.string :first_name_kana
       t.boolean :is_delete, null: false, default: false
-      t.integer :best_ansewer_all
-      t.integer :best_ansewer_week
+      t.integer :best_ansewer_all, null: 0, default: 0
+      t.integer :best_ansewer_week, null: 0, default: 0
 
       t.timestamps null: false
     end

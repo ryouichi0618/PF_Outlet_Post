@@ -1,1 +1,109 @@
-<h1>会員ページです</h1>
+<main class="customer-background">
+  <h1 class="heading text-center mt-4"><%= @customer.nickname %>の会員情報</h1>
+  <div class="container-fluid customer-container">
+    <div class="row">
+      <div class="col-3 border-right">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="text-center">
+                <%= attachment_image_tag(@customer, :profile_image, size: "230x230", fallback: "no_image.jpg") %>
+                <p class="mt-2"><%= link_to "ユーザー名・#{@customer.nickname}", customer_path(@customer) %></p>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center">
+                <h4 class="text-success border-bottom pb-2">紹介文</h4>
+                <% if @customer.info.blank? %>
+                  <p>
+                    ユーザープロフィールに<br>
+                    記載がありません。
+                  </p>
+                <% else %>
+                  <%= @customer.info %>
+                <% end %>
+              </td>
+            </tr>
+            <tr class="text-center">
+              <td>
+              <%= link_to "#{@customer.nickname}の投稿一覧", post_index_customer_path(@customer), class: "btn btn-outline-info" %><br>
+              <%= link_to "#{@customer.nickname}の回答一覧", ansewers_customer_path(@customer), class: "btn btn-outline-info" %>
+              </td>
+            </tr>
+            <% if current_customer == @customer %>
+              <tr class="text-center">
+                <td>
+                  <%= link_to "会員情報編集", edit_customer_path(@customer), class: "btn btn-outline-success" %>
+                  <%= link_to "退会する", unsubscribe_customer_path(@customer), class: "btn btn-outline-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="mx-auto col-11 img-box1"></div>
+        </div>
+      </div>
+
+      <div class="col-9">
+        <div class="row">
+          <div class="col-12 img-box2"></div>
+        </div>
+        <div class="row">
+          <% if @customer.posts.blank? %>
+            <h1 class="text-danger text-center mt-5 col-12"><%= @customer.nickname %>の投稿はまだありません。</h1>
+          <% else%>
+            <% @posts.each do |post| %>
+              <h4 class="mt-3 ansewer-name">
+                「<%= link_to "#{post.title}（←クリックして詳細へ）", post_path(post) %>」
+              </h4>
+              <table class="table col-12 ext-center">
+                <thead>
+                  <tr>
+                    <th>
+                      <h6>投稿日</h6>
+                    </th>
+                    <th>
+                      <h6>投稿回数</h6>
+                    </th>
+                    <th>
+                      <h6>いいね数</h6>
+                    </th>
+                    <th>
+                      <h6>質問ステータス</h6>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <%= post.created_at.strftime('%Y/%m/%d')%>
+                    </td>
+                    <td>
+                      <%= post.ansewers.where(parent_id: nil).count %>
+                    </td>
+                    <td>
+                      <%= post.favorites.count %>
+                    </td>
+                    <td>
+                      <% if post.best_ansewer.present? %>
+                        <span class="text-success">解決済み</span>
+                      <% else %>
+                        <span class="text-danger">回答募集中</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kaminari-btn"><%= paginate @posts,class: "text-center" %></div>
+</main>
+
+

@@ -1,0 +1,4 @@
+<main class="customer-unsubscribe">
+  <h1 class="text-center mt-5 pt-5 text-danger">こちらで確定すると会員情報が削除されます、本当によろしいですか？</h1>
+  <div class="col-12 text-center mt-5"><%= link_to "退会する", withdraw_customer_path(@customer),method: :patch, class: "btn btn-danger", data: { confirm: '本当に退会しますか？' } %></div>
+</main>
