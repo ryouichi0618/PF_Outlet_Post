@@ -1,0 +1,53 @@
+<% if post.ansewers.blank? %>
+  <p class="text-center text-danger mt-5 pt-5">まだ回答はありません。</p>
+<% end %>
+<% post.ansewers.each do |ansewer| %>
+  <% if ansewer.parent_id.present? %>
+    <% next %>
+  <% end %>
+  <% if post.best_ansewer == ansewer.id %>
+    <h4 class="mt-3">
+      <%= link_to admin_customer_path(post.customer) do %>
+        <span class="best_ansewer"><%= ansewer.customer.nickname %>さんの回答がベストアンサーです</span>
+      <% end %>
+    </h4>
+  <% else %>
+    <h4 class="mt-3">
+      <%= link_to admin_customer_path(post.customer) do %>
+        <span class="ansewer-name"><%= ansewer.customer.nickname %> さんの回答</span>
+      <% end %>
+    </h4>
+  <% end %>
+  <table class="table table-bordered col-12">
+    <tbody>
+      <tr class="border text-center">
+        <td class="py-4">
+          「<%= ansewer.body %>」
+        </td>
+        <td>
+          <% if current_admin  %>
+            <%= link_to "回答削除", admin_post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-danger", method: :delete, data: { confirm: '回答を削除しますか？' } %>
+          <% end %>
+        </td>
+      </tr>
+      <% ansewer.replies.order(:created_at).each do |reply| %>
+        <tr>
+          <td>
+            <%= link_to customer_path(reply.customer) do %>
+              <span class="bg-light text-dark">[<%= reply.customer.nickname %>]</span><br>
+            <% end %>
+            <p class="text-center">「<%= reply.body %>」</p>
+          </td>
+          <% if current_admin %>
+            <td class="text-center">
+              <%= link_to "返信削除", admin_post_post_ansewer_path(ansewer.post_id, reply), class: "btn btn-outline-danger", method: :delete, data: { confirm: '返信を削除しますか？' } %>
+            </td>
+          <% else %>
+          <td></td>
+          <% end %>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+<% end %>

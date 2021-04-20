@@ -35,15 +35,14 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    # get '/customers' => 'customers#top'
-    # get 'customers/:id' => 'customers#show'
-    # get '/customers/unsubscribe' => 'customers#unsubscribe'
     patch '/customers/:id/withdraw' => 'customers#withdraw'
     
     resources :customers, only: [:index, :show, :edit, :update]
 
 
-    resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :post_ansewers, only: [:destroy]
+    end
 
     resources :notice, except: [:new, :create]
   end

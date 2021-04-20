@@ -289,9 +289,7 @@ table {
 
 // 会員ページ
 
-.admin-text{
-  color: #FFFFFF;
-}
+
 .customer-container {
   height:900px;
 }
@@ -373,10 +371,30 @@ table {
 }
 
 
+// 管理者側
+
+.admin-text{
+  color: #FFFFFF;
+}
+
+
 // 管理者トップ画面（会員一覧）
 .admin_customer_bg {
   background-color: #666666;
   padding: 100px 0 300px;
+}
+
+
+// 管理者投稿一覧
+
+.admin_post_bg {
+  background-color: #C0C0C0;
+  padding: 100px 0 300px;
+}
+
+.admin_post_show_bg {
+  background-color: #C0C0C0;
+  padding: 100px 0 100px;
 }
 
 

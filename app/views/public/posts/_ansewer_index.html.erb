@@ -1,5 +1,5 @@
 <% if post.ansewers.blank? %>
-  <p class="text-center text-danger">まだ回答はありません。</p>
+  <p class="text-center text-danger mt-5 pt-5">まだ回答はありません。</p>
 <% end %>
 <% post.ansewers.each do |ansewer| %>
   <% if ansewer.parent_id.present? %>
@@ -37,7 +37,7 @@
             <%= link_to customer_path(reply.customer) do %>
               <span class="bg-light text-dark">[<%= reply.customer.nickname %>]</span><br>
             <% end %>
-            <p class="text-center"><%= reply.body %></p>
+            <p class="text-center">「<%= reply.body %>」</p>
           </td>
           <% if (current_customer == reply.customer) && (post.best_ansewer.blank?) %>
             <td class="text-center">
