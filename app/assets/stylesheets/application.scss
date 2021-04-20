@@ -71,10 +71,7 @@ a {
   background-color: rgba(0,0,0,0.5);
 }
 
-// 一覧画面に適用
-.shadow  {
-  text-shadow: 0 6px 7px rgba(0,0,0,0.7);
-}
+
 
 main {
   padding: 50px 0;
@@ -218,8 +215,34 @@ input[type="password"] {
 table {
   background-color: rgba(204,255,255,0.5);
 }
+// aboutページ
+
+.about-bg {
+  background-color: #333333;
+}
+
+.about-img {
+  background-image: image-url("tokyo2.jpg");
+  ackground-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 500px;
+  width: 100%;
+}
+
+.reason {
+  border: 2px solid #FFFFFF;
+  width: 70%;
+  padding: 15px;
+  margin:0 auto;
+}
+
 
 // 投稿一覧
+.shadow  {
+  text-shadow: 0 6px 7px rgba(0,0,0,0.7);
+}
+
 .post-background {
   background-image: image-url("blue.jpg");
   background-attachment: cover;
