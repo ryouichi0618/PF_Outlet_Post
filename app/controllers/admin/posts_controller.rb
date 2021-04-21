@@ -12,7 +12,7 @@ class Admin::PostsController < ApplicationController
     if post.destroy
       flash[:notice] = "投稿を削除しました。"
       redirect_to admin_posts_path
-    else 
+    else
       flash[:alert] = "投稿を削除できませんでした。"
       redirect_to admin_post_path(post)
     end

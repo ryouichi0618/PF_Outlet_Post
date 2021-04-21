@@ -7,19 +7,19 @@
       <% else %>
         <table class="table table-hover table-sm">
           <thead>
-            <tr>
-              <th>投稿ユーザー</th>
+            <tr class="border">
+              <th class="text-center" style="width: 130px;">投稿ユーザー</th>
               <th class="table-title">タイトル</th>
-              <th>回答数</th>
-              <th>いいね数</th>
-              <th>質問ステータス</th>
-              <th>回答日</th>
+              <th style="width: 100px;">回答数</th>
+              <th style="width: 100px;">いいね数</th>
+              <th style="width: 130px;">質問ステータス</th>
+              <th style="width: 120px;">回答日</th>
             </tr>
           </thead>
           <% @ansewers.each do |ansewer| %>
             <tbody>
               <tr>
-                <td>
+                <td class="text-center">
                   <%= link_to customer_path(ansewer.post.customer) do %>
                     <%= attachment_image_tag(ansewer.post.customer, :profile_image, size: "50x50", fallback: "no_image.jpg") %><br>
                     <%= ansewer.post.customer.nickname %>

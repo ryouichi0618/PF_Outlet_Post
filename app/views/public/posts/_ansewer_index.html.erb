@@ -24,7 +24,7 @@
         <td class="py-4">
           「<%= ansewer.body %>」
         </td>
-        <td>
+        <td style="width:150px;">
           <% if (current_customer == ansewer.customer) && (post.best_ansewer.blank?) %>
             <%= link_to "回答編集", edit_post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-success" %>
             <%= link_to "回答削除", post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-danger", method: :delete, data: { confirm: '回答を削除しますか？' } %>
@@ -77,7 +77,8 @@
         <% else %>
           <td class="text-center">
             <%= attachment_image_tag(ansewer.customer, :profile_image, size: "90x90", fallback: "no_image.jpg") %><br>
-            <%= "#{ansewer.customer.nickname}さんへ返信" %>
+            返信先ユーザー <br>
+            <%= ansewer.customer.nickname %>
           </td>
         <% end %>
       </tr>

@@ -1,0 +1,35 @@
+<main class="notice-customer-bg">
+  <div class="container-fluid text-light">
+    <div class="row">
+      <div class="offset-2 col-8">
+        <h1 class="py-5 text-light text-center">＜ーお知らせ一覧ー＞</h1>
+        <% if @notices.blank? %>
+          <h1 class="text-center mt-5 pt-5">現在表示するお知らせはありません</h1>
+        <% else %>
+          <table class="table table-dark text-center table-hover border-notice">
+            <thead>
+              <tr>
+                <th>投稿日</th>
+                <th>タイトル</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @notices.each do |notice| %>
+                <tr class="border-notice">
+                  <td><%= notice.created_at.strftime('%Y/%m/%d (%H時%M分)') %></td>
+                  <td><%= notice.title_notice %></td>
+                  <td><span><%= link_to "詳細",contact_show_path(notice) , class: "btn btn-info" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+    </div>
+    <div class="kaminari-btn"><%= paginate @notices,class: "text-center" %></div>
+  </div>
+</main>
+
+
+

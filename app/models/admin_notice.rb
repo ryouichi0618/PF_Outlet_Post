@@ -1,0 +1,2 @@
+class AdminNotice < ApplicationRecord
+end

@@ -24,8 +24,8 @@ class Customer < ApplicationRecord
       customer = Customer.create(
         first_name: auth.info.first_name,
         last_name: auth.info.last_name,
-        first_name_kana: "記入してください(姓)",
-        last_name_kana: "記入してください (名)",
+        first_name_kana: "未記入(姓)",
+        last_name_kana: "未記入(名)",
         nickname: auth.info.name,
         uid: auth.uid,
         provider: auth.provider,

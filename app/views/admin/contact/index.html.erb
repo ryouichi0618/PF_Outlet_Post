@@ -1,0 +1,49 @@
+<main class="notice-bg">
+  <div class="container-fluid text-light">
+    <h1 class="py-5 text-light text-center">＜ー新規お知らせ追加ー＞</h1>
+    <div class="row justify-content-center form-notice">
+      <%= form_with(model: [@notice_new], url: admin_contact_index_path, local: true) do |f| %>
+
+        <div class="field-notice">
+          <%= f.label :title_notice, "タイトル" %><br>
+          <%= f.text_field :title_notice,placeholder: "タイトルを入力してください" %>
+        </div>
+         <div class="field-notice">
+          <%= f.label :body_notice, "本文" %><br>
+          <%= f.text_area :body_notice, rows:'5',placeholder: "お知らせ内容をを入力してください" %>
+        </div>
+
+        <div class="actions text-center my-4">
+          <%= f.submit 'お知らせ追加', class: "btn btn-warning font-italic" %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+    <div class="row">
+      <div class="offset-2 col-8">
+        <h1 class="py-5 text-light text-center">＜ーお知らせ一覧ー＞</h1>
+        <table class="table table-sm table-dark text-center table-hover border-notice">
+          <thead>
+            <tr>
+              <th>投稿日</th>
+              <th>タイトル</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @notices.each do |notice| %>
+                <tr class="border-notice">
+                  <td><%= notice.created_at.strftime('%Y/%m/%d (%H時%M分)') %></td>
+                  <td><%= notice.title_notice %></td>
+                  <td><span><%= link_to "詳細", admin_contact_path(notice),class: "btn btn-info" %></td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="kaminari-btn"><%= paginate @notices,class: "text-center" %></div>
+  </div>
+</main>

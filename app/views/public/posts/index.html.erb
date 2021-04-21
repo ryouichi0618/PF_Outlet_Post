@@ -10,19 +10,19 @@
     <div class="shadow">
       <table class="table table-hover table-sm">
         <thead>
-          <tr>
-            <th>投稿ユーザー</th>
-            <th class="table-title">タイトル</th>
-            <th>回答数</th>
-            <th>いいね数</th>
-            <th>質問ステータス</th>
+          <tr class="border">
+            <th class="text-center" style="width: 130px;">投稿ユーザー</th>
+            <th class="table-title" style="width: 500px;">タイトル</th>
+            <th style="width: 100px;">回答数</th>
+            <th style="width: 100px;">いいね数</th>
+            <th style="width: 120px;">質問ステータス</th>
           </tr>
         </thead>
         <% @posts.each do |post| %>
           <% if post.customer.is_delete == false %>
             <tbody>
               <tr>
-                <td>
+                <td class="text-center" >
                   <%= link_to customer_path(post.customer) do %>
                     <%= attachment_image_tag(post.customer, :profile_image, size: "50x50", fallback: "no_image.jpg") %><br>
                     <%= post.customer.nickname %>

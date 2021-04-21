@@ -21,11 +21,13 @@
               <tbody>
                 <tr>
                   <td><%= @customer.nickname %></td>
-                  <td><%= @customer.first_name %>(<%= @customer.last_name_kana %><%= @customer.first_name_kana %><%= @customer.last_name%>)</td>
                   <td>
-                    <% if @customer.provider == "google" %>
-                      <%= @customer.email %>
-                      <p> Googleログインのユーザーです</p>
+                    <%= @customer.last_name%> <%= @customer.first_name %><br>
+                    (<%= @customer.last_name_kana %> <%= @customer.first_name_kana %>)
+                  </td>
+                  <td>
+                    <% if @customer.provider == "google_oauth2" %>
+                      <p> Googleログイン中</p>
                     <% else %>
                       <%= @customer.email %>
                     <% end %>
