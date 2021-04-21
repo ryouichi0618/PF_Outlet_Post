@@ -1,38 +1,45 @@
-<<main class="admin_customer_bg">
+<% if @path.is('search#search') %>
+  <h3 class="serched"><%= "[#{@selected}] を「#{@content}」で検索の結果" %></h3>
+<% end %>
+<main class="admin_customer_bg">
   <h1 class="admin-text text-center">会員一覧ページ</h1>
-  <table class="table admin-text text-center">
-    <thead>
-      <tr>
-        <th>会員ID</th>
-        <th>会員画像</th>
-        <th>会員名（ニックネーム）</th>
-        <th>会員名（本名）</th>
-        <th></th>
-      </tr>
-    </thead>
-    <% @customers.each do |customer| %>
-      <tbody>
+  <% if @customers.empty? %>
+    <h1 class="text-center text-danger mt-5 pt-5">ユーザーが見つかりませんでした <i class="fas fa-sad-tear"></i></h1>
+  <% else %>
+    <table class="table admin-text text-center">
+      <thead>
         <tr>
-          <td><%= customer.id %></td>
-          <td><%= attachment_image_tag(customer, :profile_image, size: "40x40", fallback: "no_image.jpg") %></td>
-          <td>
-            <%= customer.nickname %>
-          </td>
-          <td>
-            <%= "#{customer.last_name} #{customer.first_name}" %><br>
-            <%= "(#{customer.last_name_kana} #{customer.first_name_kana})" %>
-          </td>
-          <td>
-            <%= link_to "会員詳細", admin_customer_path(customer), class: "btn btn-primary" %>
-            <% if customer.customer_status_by?(customer) %>
-              <div class="col-12 text-center"><%= link_to "会員情報復旧", admin_path(customer),method: :patch, class: "btn btn-success", data: { confirm: '会員情報を復旧させますか？' } %></div>
-            <% else %>
-              <div class="col-12 text-center"><%= link_to "強制退会", admin_path(customer),method: :patch, class: "btn btn-danger", data: { confirm: '会員を強制退会させますか？' } %></div>
-            <% end %>
-          </td>
+          <th>会員ID</th>
+          <th>会員画像</th>
+          <th>会員名（ニックネーム）</th>
+          <th>会員名（本名）</th>
+          <th></th>
         </tr>
-      </tbody>
-    <% end %>
-  </table>
-  <div class="kaminari-btn"><%= paginate @customers,class: "text-center" %></div>
+      </thead>
+      <% @customers.each do |customer| %>
+        <tbody>
+          <tr>
+            <td><%= customer.id %></td>
+            <td><%= attachment_image_tag(customer, :profile_image, size: "40x40", fallback: "no_image.jpg") %></td>
+            <td>
+              <%= customer.nickname %>
+            </td>
+            <td>
+              <%= "#{customer.last_name} #{customer.first_name}" %><br>
+              <%= "(#{customer.last_name_kana} #{customer.first_name_kana})" %>
+            </td>
+            <td>
+              <%= link_to "会員詳細", admin_customer_path(customer), class: "btn btn-primary" %>
+              <% if customer.customer_status_by?(customer) %>
+                <div class="col-12 text-center"><%= link_to "会員情報復旧", admin_path(customer),method: :patch, class: "btn btn-success", data: { confirm: '会員情報を復旧させますか？' } %></div>
+              <% else %>
+                <div class="col-12 text-center"><%= link_to "強制退会", admin_path(customer),method: :patch, class: "btn btn-danger", data: { confirm: '会員を強制退会させますか？' } %></div>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+    <div class="kaminari-btn"><%= paginate @customers,class: "text-center" %></div>
+  <% end %>
 </main>

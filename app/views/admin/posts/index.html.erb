@@ -1,9 +1,11 @@
-
+<% if @path.is('search#search') %>
+  <h3 class="serched"><%= "[#{@selected}] を「#{@content}」で検索の結果" %></h3>
+<% end %>
 <main class="admin_post_bg">
   <h1 class="text-center">投稿一覧ページ</h1>
   <div class="container-fluid">
     <% if @posts.empty? %>
-      <h1 class="text-center">まだ投稿はありません。</h1>
+      <h1 class="text-center text-danger mt-5 pt-5">投稿が見つかりませんでした <i class="fas fa-sad-tear"></i></h1>
     <% else %>
       <table class="table table-hover table-sm text-center">
         <thead>

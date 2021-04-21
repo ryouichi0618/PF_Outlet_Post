@@ -39,7 +39,32 @@ class Customer < ApplicationRecord
     return customer
   end
 
+  # 会員検索機能
+  def self.search_for(selected, content, method)
+    if selected == "nickname"
+      if method == 'perfect'
+        Customer.where(nickname: content)
+      elsif method == 'forward'
+        Customer.where('nickname LIKE ?', content+'%')
+      elsif method == 'backward'
+        Customer.where('nickname LIKE ?', '%'+content)
+      else
+        Customer.where('nickname LIKE ?', '%'+content+'%')
+      end
+    else
+      if method == 'perfect'
+        Customer.where(info: content)
+      elsif method == 'forward'
+        Customer.where('info LIKE ?', content+'%')
+      elsif method == 'backward'
+        Customer.where('info LIKE ?', '%'+content)
+      else
+        Customer.where('info LIKE ?', '%'+content+'%')
+      end
+    end
+  end
 
+  # 会員退会処理
   def active_for_authentication?
     super && (self.is_delete == false)
   end

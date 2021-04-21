@@ -6,7 +6,7 @@
       <% end %>
     </span>
   </div>
-  <h1 class="text-center mb-4"><span class="post-index-heading heading">ベストアンサーランキング <i class="fas fa-crown"></i></span></h1>
+  <h1 class="text-center mb-4"><span class="post-index-heading heading"><i class="fas fa-crown"></i> 総合ベストアンサーランキング <i class="fas fa-crown"></i></span></h1>
   <div class="container">
     <div class="shadow">
       <table class="table table-hover table-dark">
@@ -25,7 +25,11 @@
             <% else %>
               <tbody>
             <% end %>
-              <tr class="text-center">
+              <% if current_customer == customer %>
+                <tr class="text-center myrank">
+              <% else %>
+                <tr class="text-center">
+              <% end %>
                 <% if i == 1%>
                   <td class="rank-1">
                 <% elsif i == 2 %>
