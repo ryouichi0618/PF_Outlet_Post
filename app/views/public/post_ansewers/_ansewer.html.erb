@@ -1,0 +1,21 @@
+<div class="sidebar">
+  <% if customer_signed_in? && (post.best_ansewer.blank?) %>
+    <%= form_with(model: [post, ansewer], url: post_post_ansewers_path(post)) do |f| %>
+      <div class="row mx-auto">
+        <%= f.text_area :body, rows:'10',placeholder: "回答入力欄", size: "30x10"%><br>
+      </div>
+      <div class="text-center mt-3">
+        <%= f.submit "回答する", class: "btn btn-warning font-italic" %>
+      </div>
+    <% end %>
+  <% elsif customer_signed_in? %>
+    <p class="text-center text-danger">回答の受付は終了しています。</p>
+  <% else %>
+    <p>ログイン時のみ回答をすることが可能です。</p>
+    <div class="sing-btn text-center">
+      <%= link_to "→新規登録の方はこちら", new_customer_registration_path, class: "link-btn" %><br>
+      <%= link_to '→登録済みの方はこちら', new_customer_session_path, class: "link-btn" %><br>
+      <%= link_to '→Googleで登録の方はこちら', customer_google_oauth2_omniauth_authorize_path, method: :post, class: "link-btn" %>
+    </div>
+  <% end %>
+</div>

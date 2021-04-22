@@ -11,6 +11,8 @@
 // about supported directives.
 //
 
+//= require jquery
+
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
@@ -19,3 +21,9 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+
+$(function(){
+  setTimeout("$('.flash').fadeOut('slow')", 3000);
+});

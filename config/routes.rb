@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
 
     resources :posts, except: [:edit, :index] do
-      resources :post_ansewers, except: [:index,:new,:show]
+      resources :post_ansewers, except: [:index,:new,:show] do
+        resources :replys, only: [:create, :destroy]
+      end
       resource :favorites, only: [:create, :destroy]
     end
 

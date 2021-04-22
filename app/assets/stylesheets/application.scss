@@ -22,6 +22,22 @@
   font-weight: bolder;
 }
 
+.sidebar-area{
+    background: #f1f1fd;
+    padding: 40px;
+    width: 100%;
+    border: solid 1px #669900;
+}
+
+.sidebar{
+    position: sticky;
+    top: 150px;
+    background: rgba(204,255,255,0.5);
+    padding: 20px;
+    width: 100%;
+    border: solid 1px #FFFFFF;
+}
+
 a {
   color: #000000;
 }
@@ -221,7 +237,7 @@ input[type="password"] {
 }
 
 table {
-  background-color: rgba(204,255,255,0.5);
+  background-color: #CCFFFF;
   width: 100%;
   table-layout: fixed;
   word-break: break-all;
@@ -300,14 +316,14 @@ table {
 
 // 投稿詳細
 .post-show-background {
-  background-color: rgba(204,204,204,0.5);
+  background-color: #ADD8E6;
   background-size: cover;
 }
 .post-title {
   text-align: center;
   border: 2px solid #6699FF;
   padding: 10px;
-  background-color: rgba(204,255,255,0.5);
+  background-color: #CCFFFF;
 }
 .post-content {
   padding: 5px;

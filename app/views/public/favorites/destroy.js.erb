@@ -1,0 +1,3 @@
+$("#post_<%= @post.id %> .ansewer-count").html("<%= @post.ansewers.where(parent_id: nil).count %>回答");
+$(".ansewer_index").html("<%= j(render 'post_ansewers/ansewer_index', post: @post) %>");
+$("#ansewer_body").val("");

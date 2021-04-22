@@ -6,13 +6,18 @@ class Public::FavoritesController < ApplicationController
     @post = Post.find(params[:post_id])
     favorite = current_customer.favorites.new(post_id: @post.id)
     favorite.save
-    redirect_back(fallback_location: root_path)
+    # render template: 'favorites/create'
+    render :create
+
   end
 
   def destroy
+    @post = Post.find(params[:post_id])
     favorite = current_customer.favorites.find_by(post_id: @post.id)
     favorite.destroy
-    redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path)
+    # render template: 'favorites/destroy'
+    render :destroy
   end
 
   private

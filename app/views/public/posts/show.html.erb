@@ -1,5 +1,6 @@
 
 <main class="post-show-background">
+  <h1 class="text-light pb-5 pl-5">＜ーー投稿詳細ーー＞</h1>
   <div class="container-fluid">
     <div class="row">
       <table class="table offset-1 col-2 ">
@@ -16,6 +17,13 @@
           </tr>
         <tbody>
       </table>
+      <div class="row">
+        <div class="col-12">
+        <% if @post.image.present? %>
+          <%= attachment_image_tag @post, :image, size: "360x260", fallback: "no_image.jpg" %>
+        <% end %>
+        </div>
+      </div>
       <div class="col-8">
         <div class="row">
           <h3 class="post-title offset-1 col-11">[<%= @post.title %>]</h3>
@@ -29,24 +37,10 @@
       </div>
       <table class="table text-center border-bottom">
         <tbody>
-          <tr>
+          <tr id="post_<%= @post.id %>">
             <td>投稿日・<%= @post.created_at.strftime('%Y/%m/%d (%H時%M分)') %></td>
-            <td><%= @post.ansewers.where(parent_id: nil).count %>回答</td>
-            <td>
-              <% if customer_signed_in? %>
-                <% if @post.favorited_by?(current_customer) %>
-                  <%= link_to post_favorites_path(@post), method: :delete do %>
-                    <span class="text-danger">♥<%= @post.favorites.count %> いいね</span>
-                  <% end %>
-                <% else %>
-                  <%= link_to post_favorites_path(@post), method: :post do %>
-                    <span class="text-primary">♡<%= @post.favorites.count %> いいね</span>
-                  <% end %>
-                <% end %>
-              <% else %>
-                <%= @post.favorites.count %>いいね <i class="far fa-thumbs-up"></i>
-              <% end %>
-            </td>
+            <td class="ansewer-count"><%= @post.ansewers.where(parent_id: nil).count %>回答</td>
+            <td class="favorite-btn"><%= render "public/favorites/favorite-btn", post: @post %></td>
             <td>
               <% if (current_customer == @post.customer) && (@post.best_ansewer.blank?) %>
                   <td><%= link_to "投稿を削除する", post_path(@post) , class: "btn btn-outline-danger", method: :delete, data: { confirm: '投稿を削除すると回答も全て削除されますがよろしいですか？' } %></td>
@@ -57,18 +51,16 @@
           </tr>
         </tbody>
       </table>
-    <% if @post.image.present? %>
-      <%= attachment_image_tag @post, :image, size: "360x260", fallback: "no_image.jpg" %>
-    <% end %>
+
     </div>
   </div>
-  <div class="container-fluid">
+  <div  id="post_ansewer_<%= @post.id %>" class="container-fluid">
     <div class="row">
-      <div class="col-3 pt-3 border-right">
-        <%= render "ansewer", post: @post, ansewer: @ansewer %>
+      <div class="col-3 pt-3 border-right sidebar-area">
+        <%= render "public/post_ansewers/ansewer", post: @post, ansewer: @ansewer %>
       </div>
-      <div class="col-9">
-        <%= render "ansewer_index", post: @post %>
+      <div class="col-9 ansewer_index">
+        <%= render "public/post_ansewers/ansewer_index", post: @post, ansewer_reply: @ansewer_reply %>
       </div>
     </div>
   </div>
