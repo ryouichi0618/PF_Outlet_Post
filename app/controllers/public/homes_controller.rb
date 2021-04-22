@@ -4,6 +4,10 @@ class Public::HomesController < Public::ApplicationController
 
   def contact
     @notices = AdminNotice.all.page(params[:page]).reverse_order
+    respond_to do |format|
+      format.html
+      format.js {render :index}
+    end
   end
 
   def contact_show

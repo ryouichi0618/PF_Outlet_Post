@@ -21,6 +21,10 @@ class Public::PostsController < Public::ApplicationController
 
   def index
     @posts = Post.all.page(params[:page]).reverse_order
+    respond_to do |format|
+      format.html
+      format.js {render :index}
+    end
   end
 
   def show

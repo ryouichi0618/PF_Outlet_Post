@@ -1,7 +1,9 @@
 <main class="admin_post_show_bg">
+  <h1 class="text-light pb-5 text-center">＜ーー投稿詳細ーー＞</h1>
   <div class="container-fluid">
     <div class="row">
-      <table class="table offset-1 col-2 ">
+      <div class="col-4">
+      <table class="table mx-auto" style="width: 270px;">
         <tbody>
           <tr>
             <td class="text-center">
@@ -15,12 +17,19 @@
           </tr>
         <tbody>
       </table>
+       <% if @post.image.present? %>
+          <div class="post-img-box text-center">
+            <%= attachment_image_tag @post, :image, size: "360x260", fallback: "no_image.jpg" %>
+            <p class="mt-4">投稿画像</p>
+          </div>
+        <% end %>
+        </div>
       <div class="col-8">
         <div class="row">
-          <h3 class="post-title offset-1 col-11">[<%= @post.title %>]</h3>
+          <h3 class="post-title col-11">[<%= @post.title %>]</h3>
         </div>
         <div class="row">
-          <div class="post-content-box  offset-1 col-11">
+          <div class="post-content-box  col-11 mb-4">
             <h4 class="text-center">質問内容</h4>
             <p class="post-content text-box"><%= @post.body %></p>
           </div>
@@ -43,12 +52,9 @@
           </tr>
         </tbody>
       </table>
-      <% if @post.image.present? %>
-        <%= attachment_image_tag @post, :image, size: "360x260", fallback: "no_image.jpg" %>
-      <% end %>
     </div>
   </div>
-  <div class="container">
-    <%= render "ansewer_index", post: @post %>
+  <div class="container" id="admin-ansewers">
+    <%= render "admin/post_ansewers/ansewer_index", post: @post %>
   </div>
 </main>

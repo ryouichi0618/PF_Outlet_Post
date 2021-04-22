@@ -3,13 +3,16 @@ class Admin::ContactController < ApplicationController
   def index
     @notice_new = AdminNotice.new
     @notices = AdminNotice.all.page(params[:page]).reverse_order
+    respond_to do |format|
+      format.html
+      format.js {render :index}
+    end
   end
 
   def create
     @notices = AdminNotice.all.page(params[:page]).reverse_order
     @notice_new = AdminNotice.new(notice_params)
     if @notice_new.save
-      flash[:notice] = "お知らせを追加しました"
       render :create
     else
       flash[:alret] = "お知らせを追加できませんでした"

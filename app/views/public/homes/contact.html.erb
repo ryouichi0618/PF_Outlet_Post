@@ -14,20 +14,14 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody>
-              <% @notices.each do |notice| %>
-                <tr class="border-notice">
-                  <td><%= notice.created_at.strftime('%Y/%m/%d (%H時%M分)') %></td>
-                  <td><%= notice.title_notice %></td>
-                  <td><span><%= link_to "詳細",contact_show_path(notice) , class: "btn btn-info" %></td>
-                </tr>
-              <% end %>
+            <tbody id="customer_contact">
+              <%= render "public/homes/index_page", notices: @notices %>
             </tbody>
           </table>
         <% end %>
       </div>
     </div>
-    <div class="kaminari-btn"><%= paginate @notices,class: "text-center" %></div>
+    <div class="kaminari-btn"><%= render "layouts/kaminari", model: @notices %></div>
   </div>
 </main>
 

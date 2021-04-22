@@ -7,7 +7,6 @@ class Public::PostAnsewersController < Public::ApplicationController
     ansewer = current_customer.ansewers.new(ansewer_params)
     ansewer.post_id = @post.id
     if ansewer.save
-      flash[:notice] = "回答しました。"
       render :create
     else
       flash[:alert] = "投稿に失敗しました。"
@@ -39,7 +38,6 @@ class Public::PostAnsewersController < Public::ApplicationController
     @ansewer = Ansewer.new
     @ansewer_reply = Ansewer.new
     if Ansewer.find_by(id: params[:id], post_id: params[:post_id]).destroy
-      flash[:notice] = "内容を削除しました。"
       render :destroy
     else
       flash[:alert] = "削除に失敗しました。"

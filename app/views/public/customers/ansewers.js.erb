@@ -1,0 +1,2 @@
+$('#customer_ansewers').html("<%= j(render "public/customers/customer_ansewer", customer: @customer, ansewers: @ansewers) %>");
+$('.kaminari-btn').html("<%= j(render 'layouts/kaminari', model: @ansewers) %>");

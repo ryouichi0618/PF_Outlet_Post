@@ -40,6 +40,6 @@
         </tbody>
       <% end %>
     </table>
-    <div class="kaminari-btn"><%= paginate @customers,class: "text-center" %></div>
   <% end %>
+  <%= render "layouts/kaminari", model: @customers %>
 </main>

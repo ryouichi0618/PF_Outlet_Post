@@ -36,6 +36,8 @@
         </table>
       </div>
     </div>
-    <div class="kaminari-btn"><%= paginate @notices,class: "text-center" %></div>
+    <div class="kaminari-btn">
+      <%= render "layouts/kaminari", model: @notices %>
+    </div>
   </div>
 </main>
