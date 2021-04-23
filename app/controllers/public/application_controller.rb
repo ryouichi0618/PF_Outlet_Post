@@ -3,6 +3,6 @@ class Public::ApplicationController  < ApplicationController
   before_action :customer
 
   def customer
-    @customer = current_customer
+    @my_customer = current_customer
   end
 end

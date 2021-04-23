@@ -7,6 +7,9 @@ class Post < ApplicationRecord
   attachment :image
 
   validates :title, length: { in: 1..50 }
+  validates :body, length: { in: 1..1000 }
+
+
 
 
   def self.search_for(selected, content, method)

@@ -1,16 +1,17 @@
 <main class="notice-bg">
   <div class="container-fluid text-light">
     <h1 class="py-5 text-light text-center">＜ー新規お知らせ追加ー＞</h1>
+    <div id="notice_errer"></div>
     <div class="row justify-content-center form-notice">
       <%= form_with(model: [@notice_new], url: admin_contact_index_path) do |f| %>
 
         <div class="field-notice">
           <%= f.label :title_notice, "タイトル" %><br>
-          <%= f.text_field :title_notice,placeholder: "タイトルを入力してください" %>
+          <%= f.text_field :title_notice,placeholder: "タイトルを入力してください（最大１００字）" %>
         </div>
          <div class="field-notice">
           <%= f.label :body_notice, "本文" %><br>
-          <%= f.text_area :body_notice, rows:'5',placeholder: "お知らせ内容をを入力してください" %>
+          <%= f.text_area :body_notice, rows:'5',placeholder: "お知らせ内容をを入力してください（最大１０００字）" %>
         </div>
 
         <div class="actions text-center my-4">

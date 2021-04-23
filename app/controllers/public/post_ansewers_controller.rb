@@ -1,7 +1,8 @@
 class Public::PostAnsewersController < Public::ApplicationController
+  before_action :post_find, except: [:update]
+  before_action :customer_check, only: [:edit]
 
   def create
-    @post = Post.find(params[:post_id])
     @ansewer = Ansewer.new
     @ansewer_reply = Ansewer.new
     ansewer = current_customer.ansewers.new(ansewer_params)
@@ -10,14 +11,12 @@ class Public::PostAnsewersController < Public::ApplicationController
       render :create
     else
       flash[:alert] = "投稿に失敗しました。"
-      redirect_to post_path(post)
+      redirect_to post_path(@post)
     end
   end
 
 
   def edit
-    @post = Post.find(params[:post_id])
-    @ansewer = Ansewer.find_by(id: params[:id], post_id: params[:post_id])
   end
 
   def update
@@ -34,7 +33,6 @@ class Public::PostAnsewersController < Public::ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
     @ansewer = Ansewer.new
     @ansewer_reply = Ansewer.new
     if Ansewer.find_by(id: params[:id], post_id: params[:post_id]).destroy
@@ -51,4 +49,18 @@ class Public::PostAnsewersController < Public::ApplicationController
   def ansewer_params
     params.require(:ansewer).permit(:body, :parent_id, :best_ansewer)
   end
+
+  def post_find
+    @post = Post.find(params[:post_id])
+  end
+
+  def customer_check
+    @ansewer = Ansewer.find_by(id: params[:id], post_id: params[:post_id])
+    unless @ansewer.customer == current_customer
+      flash[:alert] = "不正なアクセスの為ページに遷移できません"
+      redirect_to post_path(@post)
+    end
+  end
+
+
 end
