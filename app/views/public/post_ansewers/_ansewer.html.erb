@@ -2,7 +2,7 @@
   <% if customer_signed_in? && (post.best_ansewer.blank?) %>
     <%= form_with(model: [post, ansewer], url: post_post_ansewers_path(post)) do |f| %>
       <div class="row mx-auto">
-        <%= f.text_area :body, rows:'10',placeholder: "回答入力欄", size: "30x10"%><br>
+        <%= f.text_area :body, rows:'10',placeholder: "回答入力欄（最大1000字）", size: "30x10"%><br>
       </div>
       <div class="text-center mt-3">
         <%= f.submit "回答する", class: "btn btn-warning font-italic" %>

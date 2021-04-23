@@ -6,7 +6,6 @@ class Public::PostsController < Public::ApplicationController
     @post = Post.new
   end
 
-
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
@@ -23,7 +22,7 @@ class Public::PostsController < Public::ApplicationController
     @posts = Post.all.page(params[:page]).reverse_order
     respond_to do |format|
       format.html
-      format.js {render :index}
+      format.js { render :index }
     end
   end
 

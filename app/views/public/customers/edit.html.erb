@@ -4,7 +4,7 @@
     <%= form_with model:@customer, local:true do |f| %>
     <div class="row d-flex justify-content-center">
         <div class="field">
-          <%= f.label :nickname, "ニックネーム（最大１０字）" %><br>
+          <%= f.label :nickname, "ニックネーム（最大10字）" %><br>
           <%= f.text_field :nickname, placeholder: "（例）レミ" %>
         </div>
         <div class="field offset-2">
@@ -49,7 +49,7 @@
 
     <div class="row mt-4">
       <div class="field-body col text-center">
-        <%= f.label :info, "紹介文（最大１００字）" %><br>
+        <%= f.label :info, "紹介文（最大100字）" %><br>
         <%= f.text_area :info, rows:'3',placeholder: "紹介文を入力してください" %>
       </div>
     </div>

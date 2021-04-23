@@ -1,5 +1,4 @@
 class Public::FavoritesController < ApplicationController
-
   before_action :post_find
 
   def create
@@ -7,7 +6,6 @@ class Public::FavoritesController < ApplicationController
     favorite = current_customer.favorites.new(post_id: @post.id)
     favorite.save
     render :create
-
   end
 
   def destroy

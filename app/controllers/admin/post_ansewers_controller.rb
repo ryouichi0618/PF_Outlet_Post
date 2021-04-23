@@ -1,5 +1,4 @@
 class Admin::PostAnsewersController < ApplicationController
-
   def destroy
     @post = Post.find(params[:post_id])
     if Ansewer.find_by(id: params[:id], post_id: params[:post_id]).destroy

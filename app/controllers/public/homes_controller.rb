@@ -6,7 +6,7 @@ class Public::HomesController < Public::ApplicationController
     @notices = AdminNotice.all.page(params[:page]).reverse_order
     respond_to do |format|
       format.html
-      format.js {render :index}
+      format.js { render :index }
     end
   end
 

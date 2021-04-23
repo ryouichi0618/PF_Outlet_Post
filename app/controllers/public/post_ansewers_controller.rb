@@ -15,7 +15,6 @@ class Public::PostAnsewersController < Public::ApplicationController
     end
   end
 
-
   def edit
   end
 
@@ -43,7 +42,6 @@ class Public::PostAnsewersController < Public::ApplicationController
     end
   end
 
-
   private
 
   def ansewer_params
@@ -61,6 +59,4 @@ class Public::PostAnsewersController < Public::ApplicationController
       redirect_to post_path(@post)
     end
   end
-
-
 end

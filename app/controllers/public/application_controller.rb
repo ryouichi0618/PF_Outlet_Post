@@ -1,4 +1,4 @@
-class Public::ApplicationController  < ApplicationController
+class Public::ApplicationController < ApplicationController
   before_action :authenticate_customer!, except: [:contact, :contact_show, :about]
   before_action :customer
 

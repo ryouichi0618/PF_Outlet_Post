@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-
   devise_for :admin, :controllers => {
-    :sessions => 'admin/sessions'
+    :sessions => 'admin/sessions',
   }
   devise_for :customers, :controllers => {
     :registrations => 'public/registrations',
     :sessions => 'public/sessions',
-    :omniauth_callbacks => 'public/omniauth_callbacks'
+    :omniauth_callbacks => 'public/omniauth_callbacks',
   }
 
   scope module: :public do
@@ -16,10 +15,8 @@ Rails.application.routes.draw do
     get '/contact' => 'homes#contact'
     get '/contact/:id' => 'homes#contact_show', as: :contact_show
 
-
-
     resources :posts, except: [:edit, :index] do
-      resources :post_ansewers, except: [:index,:new,:show] do
+      resources :post_ansewers, except: [:index, :new, :show] do
         resources :replys, only: [:create, :destroy]
       end
       resource :favorites, only: [:create, :destroy]
@@ -43,12 +40,10 @@ Rails.application.routes.draw do
     get '/search' => 'search#search'
     resources :customers, only: [:index, :show, :edit, :update]
 
-
     resources :posts, only: [:index, :show, :destroy] do
       resources :post_ansewers, only: [:destroy]
     end
 
     resources :contact, except: [:new]
   end
-
 end

@@ -1,11 +1,10 @@
 class Admin::ContactController < ApplicationController
-
   def index
     @notice_new = AdminNotice.new
     @notices = AdminNotice.all.page(params[:page]).reverse_order
     respond_to do |format|
       format.html
-      format.js {render :index_all}
+      format.js { render :index_all }
     end
   end
 
@@ -51,5 +50,4 @@ class Admin::ContactController < ApplicationController
   def notice_params
     params.require(:admin_notice).permit(:title_notice, :body_notice)
   end
-
 end
