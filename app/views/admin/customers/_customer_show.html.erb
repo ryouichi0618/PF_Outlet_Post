@@ -1,0 +1,47 @@
+<% if customer.posts.blank? %>
+  <h1 class="text-danger text-center mt-5 col-12"><%= customer.nickname %>の投稿はまだありません。</h1>
+<% else%>
+  <% posts.each do |post| %>
+    <h4 class="mt-3 ansewer-name">
+      「<%= link_to "#{post.title}（←クリックして詳細へ）", admin_post_path(post) %>」
+    </h4>
+    <table class="table col-12 ext-center">
+      <thead>
+        <tr>
+          <th>
+            <h6>投稿日</h6>
+          </th>
+          <th>
+            <h6>投稿回数</h6>
+          </th>
+          <th>
+            <h6>いいね数</h6>
+          </th>
+          <th>
+            <h6>質問ステータス</h6>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= post.created_at.strftime('%Y/%m/%d')%>
+          </td>
+          <td>
+            <%= post.ansewers.where(parent_id: nil).count %>
+          </td>
+          <td>
+            <%= post.favorites.count %>
+          </td>
+          <td>
+            <% if post.best_ansewer.present? %>
+              <span class="text-success">解決済み</span>
+            <% else %>
+              <span class="text-danger">回答募集中</span>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

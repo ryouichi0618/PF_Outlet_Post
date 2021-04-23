@@ -1,0 +1,23 @@
+<main class="notice-bg">
+  <div class="container-fluid text-light">
+    <h1 class="py-5 text-light text-center">＜ーお知らせ内容変更ー＞</h1>
+    <div class="row justify-content-center form-notice">
+      <%= form_with(model: @notice, url: admin_contact_path(@notice), local: true) do |f| %>
+
+        <div class="field-notice">
+          <%= f.label :title_notice, "タイトル" %><br>
+          <%= f.text_field :title_notice,placeholder: "タイトルを入力してください" %>
+        </div>
+         <div class="field-notice">
+          <%= f.label :body_notice, "本文" %><br>
+          <%= f.text_area :body_notice, rows:'5',placeholder: "お知らせ内容をを入力してください" %>
+        </div>
+
+        <div class="actions text-center my-4">
+          <%= f.submit 'お知らせ内容変更', class: "btn btn-warning font-italic" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>
+

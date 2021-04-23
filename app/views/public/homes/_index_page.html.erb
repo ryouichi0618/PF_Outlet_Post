@@ -1,0 +1,7 @@
+<% notices.each do |notice| %>
+  <tr class="border-notice">
+    <td><%= notice.created_at.strftime('%Y/%m/%d (%H時%M分)') %></td>
+    <td><%= notice.title_notice %></td>
+    <td><span><%= link_to "詳細",contact_show_path(notice) , class: "btn btn-info" %></td>
+  </tr>
+<% end %>

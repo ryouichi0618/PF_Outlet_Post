@@ -22,6 +22,22 @@
   font-weight: bolder;
 }
 
+.sidebar-area{
+    background: #f1f1fd;
+    padding: 40px;
+    width: 100%;
+    border: solid 1px #669900;
+}
+
+.sidebar{
+    position: sticky;
+    top: 150px;
+    background: rgba(204,255,255,0.5);
+    padding: 20px;
+    width: 100%;
+    border: solid 1px #FFFFFF;
+}
+
 a {
   color: #000000;
 }
@@ -71,10 +87,7 @@ a {
   background-color: rgba(0,0,0,0.5);
 }
 
-// 一覧画面に適用
-.shadow  {
-  text-shadow: 0 6px 7px rgba(0,0,0,0.7);
-}
+
 
 main {
   padding: 50px 0;
@@ -135,10 +148,18 @@ nav {
   background-color: #CCFFFF;
 }
 // 新規登録画面、ログイン画面の背景画像
-.sing-background {
+.sing-up-background {
   background-image: image-url("seljalandsfoss-1751463.jpg");
   width: 100%;
-  height: 900px;
+  height: 1000px;
+  background-size: cover;
+  background-position: bottom center;
+}
+
+.sing-in-background {
+  background-image: image-url("seljalandsfoss-1751463.jpg");
+  width: 100%;
+  height: 800px;
   background-size: cover;
   background-position: bottom center;
 }
@@ -216,10 +237,72 @@ input[type="password"] {
 }
 
 table {
-  background-color: rgba(204,255,255,0.5);
+  background-color: #CCFFFF;
+  width: 100%;
+  table-layout: fixed;
+  word-break: break-all;
+  word-wrap: break-all;
 }
 
+.text-box {
+  word-break: break-all;
+  word-wrap: break-all;
+}
+
+
+// 検索スペース
+.search-form, .serched {
+  background-color: #999999;
+  border: 2px solid #FFFFFF;
+  text-align: center;
+  padding:10px 0;
+  margin: 0;
+}
+
+.serched {
+  background-color: #DDFFFF;
+  border: 2px solid #0000FF	;
+}
+// aboutページ
+
+.about-bg {
+  background-color: #333333;
+}
+
+.about-img {
+  background-image: image-url("tokyo2.jpg");
+  ackground-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 500px;
+  width: 100%;
+}
+
+.reason {
+  border: 2px solid #FFFFFF;
+  width: 70%;
+  padding: 15px;
+  margin:0 auto;
+}
+
+// 会員お知らせページ
+
+.notice-customer-bg {
+  background-color: #B0C4DE;
+  padding: 100px  0 300px;
+}
+
+.notice-customer-show-bg {
+  background-color: #B0C4DE;
+  padding: 200px 0 200px;
+}
+
+
 // 投稿一覧
+.shadow  {
+  text-shadow: 0 6px 7px rgba(0,0,0,0.7);
+}
+
 .post-background {
   background-image: image-url("blue.jpg");
   background-attachment: cover;
@@ -233,14 +316,21 @@ table {
 
 // 投稿詳細
 .post-show-background {
-  background-color: rgba(204,204,204,0.5);
+  background-color: #ADD8E6;
   background-size: cover;
+}
+
+.post-img-box{
+  padding:10px;
+  padding-top: 30px;
+  background-color: #CCFFFF;
+  width: 95%;
 }
 .post-title {
   text-align: center;
   border: 2px solid #6699FF;
   padding: 10px;
-  background-color: rgba(204,255,255,0.5);
+  background-color: #CCFFFF;
 }
 .post-content {
   padding: 5px;
@@ -333,6 +423,11 @@ table {
   background-attachment: cover;
   padding: 100px 0 300px;
 }
+
+.myrank {
+  border: 3px solid #FF0033;
+  background-color: #000000;
+}
 .top-rank {
   font-size: 25px;
 }
@@ -388,13 +483,43 @@ table {
 // 管理者投稿一覧
 
 .admin_post_bg {
-  background-color: #C0C0C0;
+  background-color: #666666;
   padding: 100px 0 300px;
 }
 
 .admin_post_show_bg {
-  background-color: #C0C0C0;
+  background-color: #666666;
   padding: 100px 0 100px;
+}
+
+// 管理者お知らせページ
+.notice-bg {
+  background-color: #B0C4DE;
+  padding: 100px 0 100px;
+}
+
+
+.form-notice > form {
+  width: 50%;
+}
+
+.field-notice > input,
+.field-notice > textarea {
+  width: 100%;
+}
+
+.notice-show-bg {
+  background-color: #B0C4DE;
+  padding: 130px 0 200px;
+}
+
+// お知らせtable
+.border-notice {
+  border: 2px solid #7FFFD4;
+}
+
+.border-show-notice {
+  border: 2px solid #000000;
 }
 
 

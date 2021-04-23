@@ -1,6 +1,6 @@
-class CreateAdominNotices < ActiveRecord::Migration[5.2]
+class CreateAdminNotices < ActiveRecord::Migration[5.2]
   def change
-    create_table :adomin_notices do |t|
+    create_table :admin_notices do |t|
       t.string :title_notice
       t.text :body_notice
 

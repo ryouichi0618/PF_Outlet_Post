@@ -4,12 +4,11 @@
     <div class="row">
       <div class="col-3 d-flex justify-content-center">
         <%= attachment_image_tag(@customer, :profile_image, size: "270x270", fallback: "no_image.jpg")%>
-
       </div>
       <div class="col-9">
         <div class="row">
           <div class="col-11">
-            <table class="table table-bordered text-center admin-text">
+            <table class="table table-bordered text-center">
               <thead>
                 <tr>
                   <th>ニックネーム</th>
@@ -21,11 +20,13 @@
               <tbody>
                 <tr>
                   <td><%= @customer.nickname %></td>
-                  <td><%= @customer.first_name %>(<%= @customer.last_name_kana %><%= @customer.first_name_kana %><%= @customer.last_name%>)</td>
                   <td>
-                    <% if @customer.provider == "google" %>
-                      <%= @customer.email %>
-                      <p> Googleログインのユーザーです</p>
+                    <%= @customer.last_name%> <%= @customer.first_name %><br>
+                    (<%= @customer.last_name_kana %> <%= @customer.first_name_kana %>)
+                  </td>
+                  <td>
+                    <% if @customer.provider == "google_oauth2" %>
+                      <p> Googleログイン中</p>
                     <% else %>
                       <%= @customer.email %>
                     <% end %>
@@ -34,7 +35,7 @@
                 </tr>
               </tbody>
             </table>
-            <table class="table col-12 admin-text">
+            <table class="table col-12">
               <tr>
                 <tbody>
                   <td>
@@ -52,67 +53,19 @@
       </div>
     </div>
     <div class="row mt-5">
-        <div class="col-12 text-center"><%= link_to "会員情報編集", edit_admin_customer_path(@customer), class: "btn btn-success" %>
-      <% if @customer.customer_status_by?(@customer) %>
-  <%= link_to "会員情報復旧", admin_path(@customer),method: :patch, class: "btn btn-success", data: { confirm: '会員情報を復旧させますか？' } %>
-      <% else %>
-  <%= link_to "強制退会", admin_path(@customer),method: :patch, class: "btn btn-danger", data: { confirm: '会員を強制退会させますか？' } %>
-      <% end %>
-        </div>
-    </div>
-  </div>
-  <div class="container">
-        <div class="row">
-          <% if @customer.posts.blank? %>
-            <h1 class="text-danger text-center mt-5 col-12"><%= @customer.nickname %>の投稿はまだありません。</h1>
-          <% else%>
-            <% @posts.each do |post| %>
-              <h4 class="mt-3 ansewer-name">
-                「<%= link_to "#{post.title}（←クリックして詳細へ）", admin_post_path(post) %>」
-              </h4>
-              <table class="table col-12 ext-center">
-                <thead>
-                  <tr>
-                    <th>
-                      <h6>投稿日</h6>
-                    </th>
-                    <th>
-                      <h6>投稿回数</h6>
-                    </th>
-                    <th>
-                      <h6>いいね数</h6>
-                    </th>
-                    <th>
-                      <h6>質問ステータス</h6>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <%= post.created_at.strftime('%Y/%m/%d')%>
-                    </td>
-                    <td>
-                      <%= post.ansewers.where(parent_id: nil).count %>
-                    </td>
-                    <td>
-                      <%= post.favorites.count %>
-                    </td>
-                    <td>
-                      <% if post.best_ansewer.present? %>
-                        <span class="text-success">解決済み</span>
-                      <% else %>
-                        <span class="text-danger">回答募集中</span>
-                      <% end %>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            <% end %>
-          <% end %>
-        </div>
+      <div class="col-12 text-center"><%= link_to "会員情報編集", edit_admin_customer_path(@customer), class: "btn btn-success" %>
+        <% if @customer.customer_status_by?(@customer) %>
+          <%= link_to "会員情報復旧", admin_path(@customer),method: :patch, class: "btn btn-success", data: { confirm: '会員情報を復旧させますか？' } %>
+        <% else %>
+          <%= link_to "強制退会", admin_path(@customer),method: :patch, class: "btn btn-danger", data: { confirm: '会員を強制退会させますか？' } %>
+        <% end %>
       </div>
     </div>
   </div>
-  <div class="kaminari-btn"><%= paginate @posts,class: "text-center" %></div>
+  <div class="container">
+    <div class="row" id="admin-customer-show">
+      <%= render "admin/customers/customer_show",customer: @customer, posts: @posts %>
+    </div>
+  </div>
+  <div class="kaminari-btn"><%= render "layouts/kaminari", model: @posts %></div>
 </main>

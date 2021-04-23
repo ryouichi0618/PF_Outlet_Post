@@ -12,10 +12,12 @@
   </head>
 
   <body>
-    <%= render 'layouts/header'%>
-    <%= render 'layouts/search'%>
-    <%= render 'layouts/flash'%>
-      <%= yield %>
+    <div class="sticky-top">
+      <%= render 'layouts/header'%>
+      <div id="flash-message"><%= render 'layouts/search'%></div>
+      <%= render 'layouts/flash'%>
+    </div>
+    <%= yield %>
     <%= render 'layouts/footer'%>
   </body>
 </html>

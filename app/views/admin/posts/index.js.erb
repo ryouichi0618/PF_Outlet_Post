@@ -1,0 +1,2 @@
+$('#admin-post-index').html("<%= j(render 'admin/posts/post_index', posts: @posts) %>");
+$('.kaminari-btn').html("<%= j(render 'layouts/kaminari', model:  @posts) %>");

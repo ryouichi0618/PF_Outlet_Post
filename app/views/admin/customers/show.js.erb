@@ -1,0 +1,2 @@
+$('#admin-customer-show').html("<%= j(render 'admin/customers/customer_show',customer: @customer, posts: @posts) %>");
+$('.kaminari-btn').html("<%= j(render 'layouts/kaminari', model:  @posts) %>");

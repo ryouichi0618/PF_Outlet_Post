@@ -1,0 +1,2 @@
+$("#contact").html("<%= j(render "admin/contact/contact_index", notices: @notices) %>");
+$('.kaminari-btn').html("<%= j(render 'layouts/kaminari', model: @notices) %>");

@@ -1,0 +1,2 @@
+$('#customer_post').html("<%= j(render 'public/customers/customer_post', posts:  @posts) %>");
+$('.kaminari-btn').html("<%= j(render 'layouts/kaminari', model:  @posts) %>");

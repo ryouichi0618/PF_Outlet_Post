@@ -26,7 +26,7 @@
         </td>
         <td>
           <% if current_admin  %>
-            <%= link_to "回答削除", admin_post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-danger", method: :delete, data: { confirm: '回答を削除しますか？' } %>
+            <%= link_to "回答削除", admin_post_post_ansewer_path(ansewer.post_id, ansewer), class: "btn btn-outline-danger", method: :delete, remote: true, data: { confirm: '回答を削除しますか？' } %>
           <% end %>
         </td>
       </tr>
@@ -40,7 +40,7 @@
           </td>
           <% if current_admin %>
             <td class="text-center">
-              <%= link_to "返信削除", admin_post_post_ansewer_path(ansewer.post_id, reply), class: "btn btn-outline-danger", method: :delete, data: { confirm: '返信を削除しますか？' } %>
+              <%= link_to "返信削除", admin_post_post_ansewer_path(ansewer.post_id, reply), class: "btn btn-outline-danger", method: :delete, remote: true, data: { confirm: '返信を削除しますか？' } %>
             </td>
           <% else %>
           <td></td>

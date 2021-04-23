@@ -1,52 +1,46 @@
-
 <main class="post-show-background">
+  <h1 class="text-light pb-5 text-center">＜ーー投稿詳細ーー＞</h1>
   <div class="container-fluid">
     <div class="row">
-      <table class="table offset-1 col-2 ">
-        <tbody>
-          <tr>
-            <td class="text-center">
-              <%= attachment_image_tag(@post.customer, :profile_image, size: "200x200", fallback: "no_image.jpg") %><br>
-            </td>
-          </tr>
-          <tr>
-            <td class="mt-3 text-center">
-              <%= link_to "投稿者・#{@post.customer.nickname}", customer_path(@post.customer) %><br>
-            </td>
-          </tr>
-        <tbody>
-      </table>
+      <div class="col-4">
+        <table class="table mx-auto" style="width: 270px;">
+          <tbody>
+            <tr>
+              <td class="text-center">
+                <%= attachment_image_tag(@post.customer, :profile_image, size: "200x200", fallback: "no_image.jpg") %><br>
+              </td>
+            </tr>
+            <tr>
+              <td class="mt-3 text-center">
+                <%= link_to "投稿者・#{@post.customer.nickname}", customer_path(@post.customer) %><br>
+              </td>
+            </tr>
+          <tbody>
+        </table>
+        <% if @post.image.present? %>
+          <div class="post-img-box text-center">
+            <%= attachment_image_tag @post, :image, size: "360x260", fallback: "no_image.jpg" %>
+            <p class="mt-4">投稿画像</p>
+          </div>
+        <% end %>
+      </div>
       <div class="col-8">
         <div class="row">
-          <h3 class="post-title offset-1 col-11">[<%= @post.title %>]</h3>
+          <h3 class="post-title col-11">[<%= @post.title %>]</h3>
         </div>
         <div class="row">
-          <div class="post-content-box  offset-1 col-11">
+          <div class="post-content-box col-11 mb-4">
             <h4 class="text-center">質問内容</h4>
-            <p class="post-content"><%= @post.body %></p>
+            <p class="post-content text-box"><%= @post.body %></p>
           </div>
         </div>
       </div>
       <table class="table text-center border-bottom">
         <tbody>
-          <tr>
+          <tr id="post_<%= @post.id %>">
             <td>投稿日・<%= @post.created_at.strftime('%Y/%m/%d (%H時%M分)') %></td>
-            <td><%= @post.ansewers.where(parent_id: nil).count %>回答</td>
-            <td>
-              <% if customer_signed_in? %>
-                <% if @post.favorited_by?(current_customer) %>
-                  <%= link_to post_favorites_path(@post), method: :delete do %>
-                    <span class="text-danger">♥<%= @post.favorites.count %> いいね</span>
-                  <% end %>
-                <% else %>
-                  <%= link_to post_favorites_path(@post), method: :post do %>
-                    <span class="text-primary">♡<%= @post.favorites.count %> いいね</span>
-                  <% end %>
-                <% end %>
-              <% else %>
-                <%= @post.favorites.count %>いいね <i class="far fa-thumbs-up"></i>
-              <% end %>
-            </td>
+            <td class="ansewer-count"><%= @post.ansewers.where(parent_id: nil).count %>回答</td>
+            <td class="favorite-btn"><%= render "public/favorites/favorite-btn", post: @post %></td>
             <td>
               <% if (current_customer == @post.customer) && (@post.best_ansewer.blank?) %>
                   <td><%= link_to "投稿を削除する", post_path(@post) , class: "btn btn-outline-danger", method: :delete, data: { confirm: '投稿を削除すると回答も全て削除されますがよろしいですか？' } %></td>
@@ -57,18 +51,15 @@
           </tr>
         </tbody>
       </table>
-    <% if @post.image.present? %>
-      <%= attachment_image_tag @post, :image, size: "360x260", fallback: "no_image.jpg" %>
-    <% end %>
     </div>
-  </div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-3 pt-3 border-right">
-        <%= render "ansewer", post: @post, ansewer: @ansewer %>
-      </div>
-      <div class="col-9">
-        <%= render "ansewer_index", post: @post %>
+    <div id="post_ansewer_<%= @post.id %>" class="container-fluid">
+      <div class="row">
+        <div class="col-3 pt-3 border-right sidebar-area">
+          <%= render "public/post_ansewers/ansewer", post: @post, ansewer: @ansewer %>
+        </div>
+        <div class="col-9 ansewer_index">
+          <%= render "public/post_ansewers/ansewer_index", post: @post, ansewer_reply: @ansewer_reply %>
+        </div>
       </div>
     </div>
   </div>
