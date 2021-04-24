@@ -417,6 +417,13 @@ table {
 
 }
 
+// 会員投稿、回答一覧
+.customer-index-background {
+  background-image: image-url("blue.jpg");
+  background-attachment: cover;
+  padding: 150px 0 400px;
+}
+
 // ランキングページ
 .ranking-background {
   background: linear-gradient(to bottom right, #FFFF33, #FFFFFF);
