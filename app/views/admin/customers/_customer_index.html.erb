@@ -1,0 +1,38 @@
+<% if customers.empty? %>
+  <h1 class="text-center text-danger mt-5 pt-5">ユーザーが見つかりませんでした <i class="fas fa-sad-tear"></i></h1>
+<% else %>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th style="width: 100px;">会員ID</th>
+        <th>会員画像</th>
+        <th>会員名（ニックネーム）</th>
+        <th>会員名（本名）</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% customers.each do |customer| %>
+      <tbody>
+        <tr>
+          <td><%= customer.id %></td>
+          <td><%= attachment_image_tag(customer, :profile_image, size: "50x50", fallback: "no_image.jpg") %></td>
+          <td>
+            <%= customer.nickname %>
+          </td>
+          <td>
+            <%= "#{customer.last_name} #{customer.first_name}" %><br>
+            <%= "(#{customer.last_name_kana} #{customer.first_name_kana})" %>
+          </td>
+          <td>
+            <%= link_to "会員詳細", admin_customer_path(customer), class: "btn btn-primary" %>
+            <% if customer.customer_status_by?(customer) %>
+              <%= link_to "会員情報復旧", admin_path(customer),method: :patch, class: "btn btn-success", data: { confirm: '会員情報を復旧させますか？' } %>
+            <% else %>
+              <%= link_to "強制退会", admin_path(customer),method: :patch, class: "btn btn-danger", data: { confirm: '会員を強制退会させますか？' } %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+<% end %>

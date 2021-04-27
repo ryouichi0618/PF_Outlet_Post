@@ -5,7 +5,6 @@ class Admin::SearchController < ApplicationController
     @method = params[:method]
     if params[:selected] == ("title" || "content")
       @posts = Post.search_for(@selected, @content, @method).page(params[:page]).reverse_order
-      @customer = current_customer
       if @selected == "title"
         @selected = "タイトル"
       else
@@ -13,12 +12,11 @@ class Admin::SearchController < ApplicationController
       end
       render template: 'admin/posts/index'
     else
-      @customers = Customer.search_for(@selected, @content, @method)
-      @customers.page(params[:page]).reverse_order
+      @customers = Customer.search_for(@selected, @content, @method).page(params[:page]).reverse_order
       if @selected == "nickname"
         @selected = "ニックネーム"
-      else
-        @selected == "紹介文"
+      elsif @selected == "info"
+        @selected = "紹介文"
       end
       render template: 'admin/customers/index'
     end

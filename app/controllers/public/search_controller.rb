@@ -4,7 +4,7 @@ class Public::SearchController < ApplicationController
     @content = params[:content]
     @method = params[:method]
     @posts = Post.search_for(@selected, @content, @method).page(params[:page]).reverse_order
-    @customer = current_customer
+    @my_customer = current_customer
     if @selected == "title"
       @selected = "タイトル"
     else
